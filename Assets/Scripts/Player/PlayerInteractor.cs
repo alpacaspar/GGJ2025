@@ -5,6 +5,19 @@ public class PlayerInteractor : MonoBehaviour, IInteractable
 {
     private IInteractable currentInteractable;
 
+    // Can be used to check on the customer if the player has the correct menu item.
+    private RestaurantMenuItem currentCarriedItem;
+
+    private void OnEnable()
+    {
+        FoodInteractable.OnInteracted += FoodInteractable_OnInteracted;
+    }
+
+    private void OnDisable()
+    {
+        FoodInteractable.OnInteracted -= FoodInteractable_OnInteracted;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent<IInteractable>(out var interactable))
@@ -41,5 +54,10 @@ public class PlayerInteractor : MonoBehaviour, IInteractable
     public void Interact(IInteractable interactor)
     {
         // Don't do anything.
+    }
+
+    private void FoodInteractable_OnInteracted(RestaurantMenuItem item)
+    {
+        currentCarriedItem = item;
     }
 }

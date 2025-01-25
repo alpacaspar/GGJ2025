@@ -7,7 +7,6 @@ public class PlayerController : MonoBehaviour
 
     private CharacterController characterController;
 
-    private PlayerInputActionsAsset inputActionAsset;
     private Vector2 moveInput;
 
     private void Awake()
