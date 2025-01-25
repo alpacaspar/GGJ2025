@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerInteractor : MonoBehaviour
+public class PlayerInteractor : MonoBehaviour, IInteractable
 {
     private IInteractable currentInteractable;
 
@@ -27,9 +27,19 @@ public class PlayerInteractor : MonoBehaviour
         if (!context.canceled)
             return;
 
-        if (currentInteractable != null && currentInteractable.CanInteract())
+        if (currentInteractable != null && currentInteractable.CanInteract(this))
         {
-            currentInteractable.Interact();
+            currentInteractable.Interact(this);
         }
+    }
+
+    public bool CanInteract(IInteractable interactor)
+    {
+        return false;
+    }
+
+    public void Interact(IInteractable interactor)
+    {
+        // Don't do anything.
     }
 }

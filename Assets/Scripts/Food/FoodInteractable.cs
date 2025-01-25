@@ -34,12 +34,12 @@ public class FoodInteractable : MonoBehaviour, IInteractable
     }
 
     // Already called from the player interactor. So no need to implement ourselves.
-    public bool CanInteract()
+    public bool CanInteract(IInteractable interactor)
     {
         return !isPreparing;
     }
 
-    public void Interact()
+    public void Interact(IInteractable interactor)
     {
         StartPreparation();
     }
