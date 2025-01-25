@@ -20,6 +20,7 @@ public class TypingEffect : MonoBehaviour
     [Header("TypingSetting")]
     [SerializeField] private float typingSpped = 0f;
     [SerializeField] private bool ovelapText = false;
+    [SerializeField] private GameObject speakBubble;
 
     [Header("TypingList")]
     [SerializeField] private List<DialogueList> dialogueList = new List<DialogueList>();
@@ -38,6 +39,8 @@ public class TypingEffect : MonoBehaviour
     private void OnEnable()
     {
         SmokeInteractable.OnSmokeBreakStarted += FontSizeToSmall;
+
+        StartCoroutine(PopTest());
     }
 
     private void OnDisable()
@@ -59,6 +62,7 @@ public class TypingEffect : MonoBehaviour
         //textBubble.text = "";
         string text;
         text = dialogueList[angryStage].dialogueObject.dialogueTexts[Random.Range(0, dialogueList[angryStage].dialogueObject.dialogueTexts.Count)];
+        speakBubble.SetActive(true);
 
         if (!dialogueList[angryStage].stackable)
         {
@@ -145,4 +149,19 @@ public class TypingEffect : MonoBehaviour
         }
         return items[Random.Range(0, items.Count)];
     }
+    #region PopBubble
+    public void PopBubble()
+    {
+        StopAllCoroutines();
+        tmp.text = "";
+
+        speakBubble.SetActive(false);
+    }
+
+    IEnumerator PopTest()
+    {
+        yield return new WaitForSeconds(5f);
+        PopBubble();
+    }
+    #endregion
 }
