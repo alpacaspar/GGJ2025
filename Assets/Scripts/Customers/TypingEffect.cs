@@ -3,7 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using TMPro;
+using Unity.VisualScripting;
+using UnityEditor.ShaderGraph;
 using UnityEngine;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class DialogueList
@@ -34,9 +37,16 @@ public class TypingEffect : MonoBehaviour
     private IEnumerator currentTalkingCoroutine;
     private string existingCompletionText;
 
+    [Header("RedBubble")]
+    [SerializeField] private float shakeValue;
+    [SerializeField] private float shakePower;
+    [SerializeField] private float chageColorRedSpeed;
+    [SerializeField] private Image bubbleImage;
+
     private void Awake()
     {
         tmp = GetComponentInChildren<TextMeshProUGUI>();
+        bubbleImage = GetComponentInChildren<Image>();
     }
 
     private void OnEnable()
@@ -185,4 +195,17 @@ public class TypingEffect : MonoBehaviour
         speakBubble.SetActive(false);
     }
     #endregion
+
+    public void ChangeColorToRed(float angry)
+    {
+        // angry 값을 0~300 범위로 정규화
+        float normalizedAngry = Mathf.Clamp01(angry / 300f);
+
+        // angry가 클수록 붉은색 (255)에 가까워지도록 계산
+        float redValue = Mathf.Lerp(255f, 0f, normalizedAngry);
+
+        // 색상 설정 (255 범위를 0~1로 변환)
+        bubbleImage.color = new Color(redValue / 255f, 1f, 1f);
+    }
+
 }

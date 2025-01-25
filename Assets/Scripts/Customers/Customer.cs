@@ -41,6 +41,7 @@ public class Customer : MonoBehaviour
 
     [Header("SpeakBubble")]
     [SerializeField] private TextMeshProUGUI speakBubble;
+    private TypingEffect typingEffect;
 
     private void Awake()
     {
@@ -48,6 +49,8 @@ public class Customer : MonoBehaviour
             agent.speed = Random.Range(minSpeed, maxSpeed);
 
         allDishes = AllDishes.instance;
+
+        typingEffect = GetComponent<TypingEffect>();
     }
 
     private void Update()
@@ -61,6 +64,8 @@ public class Customer : MonoBehaviour
             currentHunger -= hungerRate * Time.deltaTime;
 
         CheckHungerTiers();
+        
+        typingEffect.ChangeColorToRed(currentHunger);
 
         if (targetChair != null && agent.enabled == true && !isSeated)
         {
@@ -90,7 +95,7 @@ public class Customer : MonoBehaviour
         if (newHungerState != hungerState)
         {
             hungerState = newHungerState;
-            GetComponent<TypingEffect>().StartTypingEffect(speakBubble, hungerState, allDishes);
+            typingEffect.StartTypingEffect(speakBubble, hungerState, allDishes);
         }
     }
 
