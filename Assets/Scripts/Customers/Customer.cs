@@ -1,7 +1,6 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class Customer : MonoBehaviour
 {
@@ -45,7 +44,7 @@ public class Customer : MonoBehaviour
 
     // Add reference to CustomerSpawner and spawnPoint
     public CustomerSpawner customerSpawner;
-    private Transform spawnPoint;
+    private Vector3 spawnPoint;
     private bool isMovingAway = false;
 
     private void Awake()
@@ -60,10 +59,7 @@ public class Customer : MonoBehaviour
         typingEffect = GetComponent<TypingEffect>();
 
         // Find the CustomerSpawner in the scene and get the spawnPoint
-        if (customerSpawner != null)
-        {
-            spawnPoint = customerSpawner.spawnPoint;
-        }
+        spawnPoint = transform.position;
     }
 
     private void Update()
@@ -169,6 +165,6 @@ public class Customer : MonoBehaviour
         isSeated = false;
         typingEffect.PopBubble();
         StopCoroutine(JumpOffChair());
-        MoveTowardsTarget(spawnPoint.position);
+        MoveTowardsTarget(spawnPoint);
     }
 }

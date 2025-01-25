@@ -1,9 +1,11 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Customer Group", menuName = "Scriptable Objects")]
 public class CustomerGroup : ScriptableObject
 {
-    public Customer[] customers;
+    public IReadOnlyList<Customer> Customers => customers;
+    [SerializeField] private List<Customer> customers;
 
     public bool CanSitAtTable(Table table)
     {
@@ -15,6 +17,6 @@ public class CustomerGroup : ScriptableObject
                 availableChairs++;
             }
         }
-        return availableChairs >= customers.Length;
+        return availableChairs >= customers.Count;
     }
 }

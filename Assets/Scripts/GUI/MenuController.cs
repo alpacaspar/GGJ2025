@@ -12,7 +12,8 @@ public class MenuController : MonoBehaviour
 
     private void OnDisable()
     {
-        GameManager.Instance.OnStateChanged -= Instance_OnStateChanged;
+        if (GameManager.Instance != null)
+            GameManager.Instance.OnStateChanged -= Instance_OnStateChanged;
     }
     
     private void Instance_OnStateChanged(CurrentState state)

@@ -1,67 +1,95 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class CustomerSpawner : MonoBehaviour
 {
-    public List<CustomerGroup> customerGroups;
-    public Transform spawnPoint;
+    [SerializeField] private CustomerGroup[] customerGroups;
     [SerializeField] private Table[] tables;
-    [SerializeField] private float spawnRate = 50f;
-    [SerializeField] private int customerAmount;
+    [SerializeField] private Transform spawnPoint;
 
-    private Queue<CustomerGroup> waitingQueue = new Queue<CustomerGroup>();
+    [SerializeField] private float spawnRate = 30f;
 
-    private void Start()
+    private Queue<CustomerGroup> waitingQueue = new();
+    private List<Customer> customerInstances = new();
+
+    private IEnumerator spawnCustomersCoroutine;
+
+    private void OnEnable()
     {
-        foreach (CustomerGroup customerGroup in customerGroups)
-            customerAmount += customerGroup.customers.Length;
-
-        StartCoroutine(SpawnCustomerCoroutine());
+        GameManager.Instance.OnStateChanged += GameManager_OnStateChanged;
+    }
+    private void OnDisable()
+    {
+        GameManager.Instance.OnStateChanged -= GameManager_OnStateChanged;
     }
 
-    private void SpawnCustomerGroup(CustomerGroup customerGroup)
+    private void GameManager_OnStateChanged(CurrentState state)
     {
-        foreach (Table table in tables)
+        switch (state)
         {
-            if (!table.isTableOccupied && customerGroup.CanSitAtTable(table))
-            {
-                table.isTableOccupied = true; // Mark the table as occupied
-                foreach (Customer customer in customerGroup.customers)
+            case CurrentState.Menu:
+            case CurrentState.GameOver:
+                if (spawnCustomersCoroutine != null)
                 {
-                    GameObject customerObject = Instantiate(customer, spawnPoint.position, Quaternion.identity).gameObject;
-                    foreach (Chair chair in table.chairs)
+                    StopCoroutine(spawnCustomersCoroutine);
+                }
+
+                for (int i = customerInstances.Count - 1; i >= 0; i--)
+                {
+                    Customer customer = customerInstances[i];
+                    customerInstances.Remove(customer);
+                    Destroy(customer.gameObject);
+                }
+
+                waitingQueue.Clear();
+                break;
+
+            case CurrentState.InGame:
+                spawnCustomersCoroutine = Co_SpawnCustomers();
+                StartCoroutine(spawnCustomersCoroutine);
+                break;
+        }
+    }
+
+    private IEnumerator Co_SpawnCustomers()
+    {
+        while (GameManager.Instance.CurrentState is CurrentState.InGame)
+        {
+            var newGroup = customerGroups[Random.Range(0, customerGroups.Length)];
+            waitingQueue.Enqueue(newGroup);
+
+            if (waitingQueue.Count > 0)
+            {
+                var vacantTables = tables.Where((t) => !t.IsTableOccupied);
+                if (vacantTables.Any())
+                {
+                    var group = waitingQueue.Dequeue();
+                    var table = vacantTables.First();
+
+                    for (int i = 0; i < group.Customers.Count; i++)
                     {
-                        if (!chair.isChairOccupied)
+                        foreach (Chair chair in table.chairs)
                         {
+                            if (chair.isChairOccupied)
+                                continue;
+
+                            var instance = Instantiate(group.Customers[i], spawnPoint.position, Quaternion.identity);
+
+                            instance.targetChair = chair;
                             chair.isChairOccupied = true;
-                            customerObject.GetComponent<Customer>().targetChair = chair;
-                            customerObject.GetComponent<Customer>().customerSpawner = this;
+
+                            customerInstances.Add(instance);
+
                             break;
                         }
                     }
+
+                    table.Occupy();
                 }
-                return;
             }
-        }
-        waitingQueue.Enqueue(customerGroup);
-    }
 
-    private IEnumerator SpawnCustomerCoroutine()
-    {
-        for (int i = 0; i < customerAmount; i++)
-        {
-            if (i < customerGroups.Count)
-            {
-                SpawnCustomerGroup(customerGroups[i]);
-            }
-            yield return new WaitForSeconds(spawnRate);
-        }
-
-        while (waitingQueue.Count > 0)
-        {
-            CustomerGroup customerGroup = waitingQueue.Dequeue();
-            SpawnCustomerGroup(customerGroup);
             yield return new WaitForSeconds(spawnRate);
         }
     }
