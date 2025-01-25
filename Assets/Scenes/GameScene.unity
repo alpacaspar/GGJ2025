@@ -165,10 +165,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9708e8c470a558b4fb97afad8fd00eea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuType: 0
   menuItems:
-  - {fileID: 3625043607559282579, guid: 19fb86013d8c24d6cb8410c0aadf30fa, type: 3}
-  - {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
+  - {fileID: 11400000, guid: fcd69426c350f6548b52d855b40c466d, type: 2}
   preparationTimeRange: {x: 5, y: 20}
 --- !u!65 &28053357
 BoxCollider:
