@@ -310,10 +310,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 162367357235595304}
-  - component: {fileID: 5391083970642589588}
   - component: {fileID: 8960505223294505811}
   - component: {fileID: 1805522981160724573}
   - component: {fileID: 8945612225026639189}
+  - component: {fileID: 2097735268522010018}
   m_Layer: 0
   m_Name: Customer
   m_TagString: Untagged
@@ -338,29 +338,6 @@ Transform:
   - {fileID: 7488088726999164186}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &5391083970642589588
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4062418340727045834}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &8960505223294505811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -531,6 +508,27 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!135 &2097735268522010018
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4062418340727045834}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &4146040187867134287
 GameObject:
   m_ObjectHideFlags: 0

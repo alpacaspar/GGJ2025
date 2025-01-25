@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -5,7 +7,7 @@ public class PlayerInteractor : MonoBehaviour, IInteractable
 {
     [SerializeField] private PlayerAnimator playerAnimator;
 
-    private IInteractable currentInteractable;
+    private List<IInteractable> interactables = new();
 
     // Can be used to check on the customer if the player has the correct menu item.
     private RestaurantMenuItem currentCarriedItem;
@@ -24,25 +26,29 @@ public class PlayerInteractor : MonoBehaviour, IInteractable
     {
         if (other.TryGetComponent<IInteractable>(out var interactable))
         {
-            currentInteractable = interactable;
+            interactables.Add(interactable);
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.TryGetComponent<IInteractable>(out var _))
+        if (other.TryGetComponent<IInteractable>(out var interactable))
         {
-            currentInteractable = null;
+            interactables.Remove(interactable);
         }
     }
 
     public void OnInteract(InputAction.CallbackContext context)
     {
         // Only interact when releasing the interact button.
-        if (!context.canceled)
+        if (!context.action.WasReleasedThisFrame())
             return;
 
-        if (currentInteractable != null && currentInteractable.CanInteract(this))
+        if (!interactables.Any())
+            return;
+        
+        IInteractable currentInteractable = interactables.First();
+        if (interactables != null && currentInteractable.CanInteract(this))
         {
             currentInteractable.Interact(this);
             playerAnimator.TriggerInteract();

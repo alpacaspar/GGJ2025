@@ -55,6 +55,8 @@ public class CustomerSpawner : MonoBehaviour
 
     private IEnumerator Co_SpawnCustomers()
     {
+        yield return new WaitForSeconds(10f);
+
         while (GameManager.Instance.CurrentState is CurrentState.InGame)
         {
             var newGroup = customerGroups[Random.Range(0, customerGroups.Length)];

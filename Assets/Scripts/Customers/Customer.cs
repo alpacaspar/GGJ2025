@@ -115,36 +115,10 @@ public class Customer : MonoBehaviour
         }
     }
 
-    private IEnumerator JumpToChair()
-    {
-        Vector3 startPosition = transform.position;
-        Vector3 endPosition = targetChair.transform.position;
-        Quaternion startRotation = transform.rotation;
-        Quaternion endRotation = targetChair.transform.rotation;
-
-        float elapsedTime = 0f;
-
-        while (elapsedTime < jumpDuration)
-        {
-            float t = elapsedTime / jumpDuration;
-            float height = jumpCurve.Evaluate(t);
-
-            transform.position = Vector3.Lerp(startPosition, endPosition, t) + Vector3.up * height;
-            transform.rotation = Quaternion.Slerp(startRotation, endRotation, t);
-
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-
-        transform.SetPositionAndRotation(endPosition, endRotation);
-        isSeated = true;
-    }
-
     private IEnumerator JumpOffChair()
     {
         Vector3 startPosition = transform.position;
         Vector3 endPosition = startPosition + transform.forward * -1; // Move one unit forward
-        Quaternion startRotation = transform.rotation;
 
         float elapsedTime = 0f;
 

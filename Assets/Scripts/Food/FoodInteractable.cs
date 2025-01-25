@@ -5,7 +5,6 @@ public class FoodInteractable : MonoBehaviour, IInteractable
     public static System.Action<RestaurantMenuItem> OnInteracted;
 
     [SerializeField] private RestaurantMenuItem[] menuItems;
-
     [SerializeField] private Vector2 preparationTimeRange;
 
     private SpriteRenderer spriteRenderer;
@@ -15,7 +14,7 @@ public class FoodInteractable : MonoBehaviour, IInteractable
 
     private void Awake()
     {
-        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
 
         StartPreparation();
     }
