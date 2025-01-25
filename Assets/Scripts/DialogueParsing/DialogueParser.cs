@@ -54,7 +54,7 @@ public class DialogueParser : EditorWindow
         string[] fileLines = System.IO.File.ReadAllLines(path);
 
         DialogueObject dialogueObject = null;
-        List<DialogueObject> dialogueObjects = new List<DialogueObject>();
+        List<DialogueObject> dialogueObjects = new();
 
         foreach (string line in fileLines)
         {
