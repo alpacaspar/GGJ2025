@@ -380,13 +380,15 @@ MonoBehaviour:
   randomSpeed: 0
   minSpeed: 1
   maxSpeed: 1
-  maxHunger: 150
-  currentHunger: 100
-  hungerDecreaseRate: 0.15
-  talkTier: 120
+  maxHunger: 300
+  currentHunger: 300
+  hungerDecreaseRate: 0.05
+  talkTier: 280
   secondTalkTier: 100
-  attentionTier: 60
-  orderTier: 50
+  attentionTier: 200
+  orderTier: 160
+  angerTier: 50
+  hungerTier: 0
   hungerCurve:
     serializedVersion: 2
     m_Curve:
@@ -497,14 +499,20 @@ MonoBehaviour:
   speakBubble: {fileID: 6006036038274473158}
   dialogueList:
   - angryStage: 0
-    dialogueObject: {fileID: 0}
-    stackable: 0
-  - angryStage: 0
-    dialogueObject: {fileID: 0}
-    stackable: 0
-  - angryStage: 0
-    dialogueObject: {fileID: 0}
-    stackable: 0
+    dialogueObject: {fileID: 11400000, guid: 4108d684ab056b540bb496e139e56917, type: 2}
+    stackable: 1
+  - angryStage: 1
+    dialogueObject: {fileID: 11400000, guid: 89069a84096c7044ebb1bb9c646d7978, type: 2}
+    stackable: 1
+  - angryStage: 2
+    dialogueObject: {fileID: 11400000, guid: 6ba096e8476e404458374507136e6e69, type: 2}
+    stackable: 1
+  - angryStage: 3
+    dialogueObject: {fileID: 11400000, guid: 09a68ed14cb9c8d479caefd9b3450bf8, type: 2}
+    stackable: 1
+  - angryStage: 4
+    dialogueObject: {fileID: 11400000, guid: e7a704906046a0f4db4870df29121903, type: 2}
+    stackable: 1
   smallFontSize: 0
   fontSizeDownSpeed: 0
   fontSizeUpSpeed: 0

@@ -60,10 +60,15 @@ public class TypingEffect : MonoBehaviour
     #region TypingEffect
     public void StartTypingEffect(TextMeshProUGUI textBubble, int angryStage, AllDishes allDishes)
     {
-        //textBubble.text = "";
+        if (angryStage < 1 || angryStage > dialogueList.Count)
+        {
+            Debug.LogWarning("angryStage is out of range.");
+            return;
+        }
+
         string text;
         angryStage--;
-        text = dialogueList[angryStage].dialogueObject.dialogueTexts[Random.Range(0, dialogueList[angryStage].dialogueObject.dialogueTexts.Count - 1)];
+        text = dialogueList[angryStage].dialogueObject.dialogueTexts[Random.Range(0, dialogueList[angryStage].dialogueObject.dialogueTexts.Count)];
         text = ReplacePlaceholders(text, allDishes);
         speakBubble.SetActive(true);
 
