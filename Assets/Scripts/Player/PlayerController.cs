@@ -6,13 +6,26 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float moveSpeed = 3.0f;
 
     private CharacterController characterController;
+    private PlayerInput input;
 
     private Vector2 moveInput;
 
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
+        input = GetComponent<PlayerInput>();
     }
+
+    private void OnEnable()
+    {
+        GameManager.Instance.OnStateChanged += GameOver_OnStateChanged;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.Instance.OnStateChanged -= GameOver_OnStateChanged;
+    }
+
 
     private void Update()
     {
@@ -25,4 +38,17 @@ public class PlayerController : MonoBehaviour
         moveInput = context.ReadValue<Vector2>();
     }
 
+    private void GameOver_OnStateChanged(CurrentState state)
+    {
+        switch (state)
+        {
+            case CurrentState.Menu:
+            case CurrentState.GameOver:
+                input.enabled = false;
+                break;
+            case CurrentState.InGame:
+                input.enabled = true;
+                break;
+        }
+    }
 }
