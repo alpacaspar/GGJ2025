@@ -12,12 +12,12 @@ public class Customer : MonoBehaviour
     [SerializeField] private AllDishes allDishes;
 
     [Header("AI Agent")]
-    [SerializeField] private NavMeshAgent agent;
     [SerializeField] private bool randomSpeed = false;
     [Range(1f, 10f)]
     [SerializeField] private float minSpeed = 1f;
     [Range(1f, 10f)]
     [SerializeField] private float maxSpeed = 1f;
+    private float speed;
 
     [Header("Hunger")]
     [SerializeField] private float currentHunger = 100;
@@ -46,11 +46,14 @@ public class Customer : MonoBehaviour
     // Add reference to CustomerSpawner and spawnPoint
     public CustomerSpawner customerSpawner;
     private Transform spawnPoint;
+    private bool isMovingAway = false;
 
     private void Awake()
     {
         if (randomSpeed)
-            agent.speed = Random.Range(minSpeed, maxSpeed);
+            speed = Random.Range(minSpeed, maxSpeed);
+        else
+            speed = minSpeed;
 
         allDishes = AllDishes.instance;
 
@@ -77,18 +80,21 @@ public class Customer : MonoBehaviour
 
         typingEffect.ChangeColorToRed(currentHunger);
 
-        if (targetChair != null && agent.enabled == true && !isSeated)
+        if (targetChair != null && !isSeated)
         {
-            agent.SetDestination(targetChair.transform.position);
-            if (agent.remainingDistance <= agent.stoppingDistance && !agent.pathPending)
-                StartCoroutine(JumpToChair());
+            MoveTowardsTarget(targetChair.transform.position);
         }
 
         // Check if currentHunger is less than or equal to 0
-        if (currentHunger <= 0)
+        if (currentHunger <= 0 && !isMovingAway)
         {
-            StartCoroutine(JumpOffChair());
+            isMovingAway = true;
         }
+    }
+
+    private void MoveTowardsTarget(Vector3 targetPosition)
+    {
+        transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
     }
 
     private void CheckHungerTiers()
@@ -117,9 +123,6 @@ public class Customer : MonoBehaviour
 
     private IEnumerator JumpToChair()
     {
-        agent.isStopped = true;
-        agent.enabled = false;
-
         Vector3 startPosition = transform.position;
         Vector3 endPosition = targetChair.transform.position;
         Quaternion startRotation = transform.rotation;
@@ -149,13 +152,6 @@ public class Customer : MonoBehaviour
         Vector3 endPosition = startPosition + transform.forward * -1; // Move one unit forward
         Quaternion startRotation = transform.rotation;
 
-        // Find the nearest point on the NavMesh to the endPosition
-        NavMeshHit hit;
-        if (NavMesh.SamplePosition(endPosition, out hit, 1.0f, NavMesh.AllAreas))
-        {
-            endPosition = hit.position;
-        }
-
         float elapsedTime = 0f;
 
         while (elapsedTime < jumpDuration)
@@ -171,16 +167,8 @@ public class Customer : MonoBehaviour
 
         transform.SetPositionAndRotation(endPosition, Quaternion.identity);
         isSeated = false;
-        MoveBackToSpawnPoint();
-    }
-
-    private void MoveBackToSpawnPoint()
-    {
+        typingEffect.PopBubble();
         StopCoroutine(JumpOffChair());
-        if (spawnPoint != null)
-        {
-            agent.enabled = true;
-            agent.SetDestination(spawnPoint.position);
-        }
+        MoveTowardsTarget(spawnPoint.position);
     }
 }

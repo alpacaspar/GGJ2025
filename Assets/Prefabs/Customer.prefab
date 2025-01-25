@@ -312,7 +312,6 @@ GameObject:
   - component: {fileID: 162367357235595304}
   - component: {fileID: 5391083970642589588}
   - component: {fileID: 8960505223294505811}
-  - component: {fileID: 8497089408871832844}
   - component: {fileID: 1805522981160724573}
   - component: {fileID: 8945612225026639189}
   m_Layer: 0
@@ -376,10 +375,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetChair: {fileID: 0}
   allDishes: {fileID: 0}
-  agent: {fileID: 8497089408871832844}
   randomSpeed: 0
-  minSpeed: 1
-  maxSpeed: 1
+  minSpeed: 3
+  maxSpeed: 5
   currentHunger: 300
   hungerDecreaseRate: 4
   talkTier: 280
@@ -449,28 +447,6 @@ MonoBehaviour:
   jumpDuration: 0.5
   speakBubble: {fileID: 6593775749703162935}
   customerSpawner: {fileID: 0}
---- !u!195 &8497089408871832844
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4062418340727045834}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 4
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 1
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!114 &1805522981160724573
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -519,7 +495,7 @@ MonoBehaviour:
   shakeValue: 100
   shakePower: 0.1
   chageColorRedSpeed: 0
-  bubbleImage: {fileID: 0}
+  bubbleImage: {fileID: 6873588754824791368}
   baseColor: {r: 1, g: 1, b: 1, a: 1}
   redColor: {r: 1, g: 0, b: 0, a: 1}
   lerpCurve:
