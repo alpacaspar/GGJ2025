@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class CustomerSpawner : MonoBehaviour
 {
-    [SerializeField] public List<CustomerGroup> customerGroups;
-    [SerializeField] private Transform spawnPoint;
+    public List<CustomerGroup> customerGroups;
+    public Transform spawnPoint;
     [SerializeField] private Table[] tables;
     [SerializeField] private float spawnRate = 50f;
     [SerializeField] private int customerAmount;
@@ -36,6 +36,7 @@ public class CustomerSpawner : MonoBehaviour
                         {
                             chair.isChairOccupied = true;
                             customerObject.GetComponent<Customer>().targetChair = chair;
+                            customerObject.GetComponent<Customer>().customerSpawner = this;
                             break;
                         }
                     }

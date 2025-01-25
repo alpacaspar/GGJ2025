@@ -199,34 +199,29 @@ public class TypingEffect : MonoBehaviour
     }
     public void ChangeColorToRed(float angry)
     {
-        // Normalize angry value and apply curve for smooth transitions
         float normalizedAngry = Mathf.Clamp01(angry / 300f);
         float curveValue = lerpCurve.Evaluate(normalizedAngry);
 
-        // Lerp between baseColor and redColor based on curveValue
         bubbleImage.color = Color.Lerp(redColor, baseColor, curveValue);
 
-        // Apply shake if angry is below shakeValue
         if (angry <= shakeValue)
         {
             ApplyShake(normalizedAngry);
         }
     }
 
-    // Shake logic
     private Coroutine shakeCoroutine;
 
     private void ApplyShake(float intensity)
     {
-        if (shakeCoroutine != null) return; // Prevent multiple shake routines
+        if (shakeCoroutine != null) return; 
         shakeCoroutine = StartCoroutine(ShakeRoutine(intensity));
     }
 
-    // Coroutine for smoother shake
     private IEnumerator ShakeRoutine(float intensity)
     {
         Vector3 originalPosition = speakBubble.transform.localPosition;
-        float shakeDuration = 0.5f; // Duration of the shake in seconds
+        float shakeDuration = 0.5f; 
         float elapsed = 0f;
 
         while (elapsed < shakeDuration)

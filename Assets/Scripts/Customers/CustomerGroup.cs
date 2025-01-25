@@ -1,5 +1,7 @@
-﻿[System.Serializable]
-public class CustomerGroup
+﻿using UnityEngine;
+
+[CreateAssetMenu(fileName = "New Customer Group", menuName = "Scriptable Objects")]
+public class CustomerGroup : ScriptableObject
 {
     public Customer[] customers;
 

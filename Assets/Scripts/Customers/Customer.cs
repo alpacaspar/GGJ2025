@@ -43,6 +43,10 @@ public class Customer : MonoBehaviour
     [SerializeField] private TextMeshProUGUI speakBubble;
     private TypingEffect typingEffect;
 
+    // Add reference to CustomerSpawner and spawnPoint
+    public CustomerSpawner customerSpawner;
+    private Transform spawnPoint;
+
     private void Awake()
     {
         if (randomSpeed)
@@ -51,6 +55,12 @@ public class Customer : MonoBehaviour
         allDishes = AllDishes.instance;
 
         typingEffect = GetComponent<TypingEffect>();
+
+        // Find the CustomerSpawner in the scene and get the spawnPoint
+        if (customerSpawner != null)
+        {
+            spawnPoint = customerSpawner.spawnPoint;
+        }
     }
 
     private void Update()
@@ -64,7 +74,7 @@ public class Customer : MonoBehaviour
             currentHunger -= hungerRate * Time.deltaTime;
 
         CheckHungerTiers();
-        
+
         typingEffect.ChangeColorToRed(currentHunger);
 
         if (targetChair != null && agent.enabled == true && !isSeated)
@@ -72,6 +82,12 @@ public class Customer : MonoBehaviour
             agent.SetDestination(targetChair.transform.position);
             if (agent.remainingDistance <= agent.stoppingDistance && !agent.pathPending)
                 StartCoroutine(JumpToChair());
+        }
+
+        // Check if currentHunger is less than or equal to 0
+        if (currentHunger <= 0)
+        {
+            StartCoroutine(JumpOffChair());
         }
     }
 
@@ -89,7 +105,7 @@ public class Customer : MonoBehaviour
             newHungerState = 2;
         else if (currentHunger <= talkTier)
             newHungerState = 1;
-      else if(currentHunger > talkTier)
+        else if (currentHunger > talkTier)
             newHungerState = 0;
 
         if (newHungerState != hungerState)
@@ -125,5 +141,46 @@ public class Customer : MonoBehaviour
 
         transform.SetPositionAndRotation(endPosition, endRotation);
         isSeated = true;
+    }
+
+    private IEnumerator JumpOffChair()
+    {
+        Vector3 startPosition = transform.position;
+        Vector3 endPosition = startPosition + transform.forward * -1; // Move one unit forward
+        Quaternion startRotation = transform.rotation;
+
+        // Find the nearest point on the NavMesh to the endPosition
+        NavMeshHit hit;
+        if (NavMesh.SamplePosition(endPosition, out hit, 1.0f, NavMesh.AllAreas))
+        {
+            endPosition = hit.position;
+        }
+
+        float elapsedTime = 0f;
+
+        while (elapsedTime < jumpDuration)
+        {
+            float t = elapsedTime / jumpDuration;
+            float height = jumpCurve.Evaluate(t);
+
+            transform.position = Vector3.Lerp(startPosition, endPosition, t) + Vector3.up * height;
+
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        transform.SetPositionAndRotation(endPosition, Quaternion.identity);
+        isSeated = false;
+        MoveBackToSpawnPoint();
+    }
+
+    private void MoveBackToSpawnPoint()
+    {
+        StopCoroutine(JumpOffChair());
+        if (spawnPoint != null)
+        {
+            agent.enabled = true;
+            agent.SetDestination(spawnPoint.position);
+        }
     }
 }

@@ -381,7 +381,7 @@ MonoBehaviour:
   minSpeed: 1
   maxSpeed: 1
   currentHunger: 300
-  hungerDecreaseRate: 0.05
+  hungerDecreaseRate: 4
   talkTier: 280
   secondTalkTier: 100
   attentionTier: 200
@@ -448,6 +448,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   jumpDuration: 0.5
   speakBubble: {fileID: 6593775749703162935}
+  customerSpawner: {fileID: 0}
 --- !u!195 &8497089408871832844
 NavMeshAgent:
   m_ObjectHideFlags: 0
