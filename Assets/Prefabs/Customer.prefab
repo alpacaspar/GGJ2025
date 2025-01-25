@@ -515,8 +515,8 @@ MonoBehaviour:
   smallFontSize: 0
   fontSizeDownSpeed: 0
   fontSizeUpSpeed: 0
-  shakeValue: 0
-  shakePower: 0
+  shakeValue: 100
+  shakePower: 0.1
   chageColorRedSpeed: 0
   bubbleImage: {fileID: 0}
   baseColor: {r: 1, g: 1, b: 1, a: 1}

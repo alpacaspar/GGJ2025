@@ -199,11 +199,61 @@ public class TypingEffect : MonoBehaviour
     }
     public void ChangeColorToRed(float angry)
     {
+        // Normalize angry value and apply curve for smooth transitions
         float normalizedAngry = Mathf.Clamp01(angry / 300f);
         float curveValue = lerpCurve.Evaluate(normalizedAngry);
 
         // Lerp between baseColor and redColor based on curveValue
         bubbleImage.color = Color.Lerp(redColor, baseColor, curveValue);
+
+        // Apply shake if angry is below shakeValue
+        if (angry <= shakeValue)
+        {
+            ApplyShake(normalizedAngry);
+        }
+    }
+
+    // Shake logic
+    private Coroutine shakeCoroutine;
+
+    private void ApplyShake(float intensity)
+    {
+        if (shakeCoroutine != null) return; // Prevent multiple shake routines
+        shakeCoroutine = StartCoroutine(ShakeRoutine(intensity));
+    }
+
+    // Coroutine for smoother shake
+    private IEnumerator ShakeRoutine(float intensity)
+    {
+        Vector3 originalPosition = speakBubble.transform.localPosition;
+        float shakeDuration = 0.5f; // Duration of the shake in seconds
+        float elapsed = 0f;
+
+        while (elapsed < shakeDuration)
+        {
+            // Calculate shake amount based on intensity and shakePower
+            float shakeAmount = Mathf.Lerp(0, shakePower, 1f - intensity);
+
+            // Generate random offset
+            float offsetX = Random.Range(-shakeAmount, shakeAmount);
+            float offsetY = Random.Range(-shakeAmount, shakeAmount);
+
+            // Apply shake effect
+            speakBubble.transform.localPosition = new Vector3(
+                originalPosition.x + offsetX,
+                originalPosition.y + offsetY,
+                originalPosition.z
+            );
+
+            // Wait before applying the next shake
+            yield return new WaitForSeconds(0.05f);
+
+            elapsed += 0.05f;
+        }
+
+        // Reset position and stop shaking
+        speakBubble.transform.localPosition = originalPosition;
+        shakeCoroutine = null;
     }
     #endregion
 }
