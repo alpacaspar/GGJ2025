@@ -1,0 +1,508 @@
+fileFormatVersion: 2
+guid: 9a3f6919b4555224a8894d60f2f33618
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5183165583732905835
+    second: ggj25-waiter-sheet_0
+  - first:
+      213: 5735328256548086809
+    second: ggj25-waiter-sheet_1
+  - first:
+      213: -994951839254565691
+    second: ggj25-waiter-sheet_2
+  - first:
+      213: 7107243805462749730
+    second: ggj25-waiter-sheet_3
+  - first:
+      213: 3187362363869476725
+    second: ggj25-waiter-sheet_4
+  - first:
+      213: 9060637486432118085
+    second: ggj25-waiter-sheet_5
+  - first:
+      213: -6724827775762591375
+    second: ggj25-waiter-sheet_6
+  - first:
+      213: -4204439989081626585
+    second: ggj25-waiter-sheet_7
+  - first:
+      213: 5622130365144090079
+    second: ggj25-waiter-sheet_8
+  - first:
+      213: 6384610738244372244
+    second: ggj25-waiter-sheet_9
+  - first:
+      213: 8465950686726669677
+    second: ggj25-waiter-sheet_10
+  - first:
+      213: -2759483146797793398
+    second: ggj25-waiter-sheet_11
+  - first:
+      213: 6674097819530257910
+    second: ggj25-waiter-sheet_12
+  - first:
+      213: -8768095634919571236
+    second: ggj25-waiter-sheet_13
+  - first:
+      213: 3022712863393467477
+    second: ggj25-waiter-sheet_14
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 0
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ggj25-waiter-idle1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 400
+        width: 50
+        height: 80
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b671e6603ad4ee740800000000000000
+      internalID: 5183165583732905835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ggj25-waiter-idle2
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 400
+        width: 50
+        height: 80
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9142fc989aaf79f40800000000000000
+      internalID: 5735328256548086809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ggj25-waiter-interact
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 320
+        width: 50
+        height: 80
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5cc2c9cd2983132f0800000000000000
+      internalID: -994951839254565691
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ggj25-waiter-pickup
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 240
+        width: 50
+        height: 80
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 222e3b4d59002a260800000000000000
+      internalID: 7107243805462749730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ggj25-waiter-walk1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 160
+        width: 50
+        height: 80
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 577b3ecbe29cb3c20800000000000000
+      internalID: 3187362363869476725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ggj25-waiter-walk2
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 160
+        width: 50
+        height: 80
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 545ef51e9c9ddbd70800000000000000
+      internalID: 9060637486432118085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ggj25-waiter-walk3
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 160
+        width: 50
+        height: 80
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1719df184cc9ca2a0800000000000000
+      internalID: -6724827775762591375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ggj25-waiter-walk4
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 160
+        width: 50
+        height: 80
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 728a7532b14d6a5c0800000000000000
+      internalID: -4204439989081626585
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ggj25-waiter-walk-sil1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 80
+        width: 50
+        height: 80
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd5c95f97c1d50e40800000000000000
+      internalID: 5622130365144090079
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ggj25-waiter-walk-sil2
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 80
+        width: 50
+        height: 80
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 417433aa3a1ba9850800000000000000
+      internalID: 6384610738244372244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ggj25-waiter-smoke
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 50
+        height: 80
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6541588b491d7570800000000000000
+      internalID: 8465950686726669677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ggj25-waiter-smoke2
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 0
+        width: 50
+        height: 80
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a8fb077c2b854b9d0800000000000000
+      internalID: -2759483146797793398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ggj25-waiter-smoke3
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 0
+        width: 50
+        height: 80
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f56f412b982f9c50800000000000000
+      internalID: 6674097819530257910
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ggj25-waiter-smoke4
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 0
+        width: 50
+        height: 80
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd047f3b977715680800000000000000
+      internalID: -8768095634919571236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ggj25-waiter-smoke5
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 0
+        width: 50
+        height: 80
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 55c42909555d2f920800000000000000
+      internalID: 3022712863393467477
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: e7453dcbc596d9241a3ea790881bf8e4
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      3: -6724827775762591375
+      ggj25-waiter-idle1: 5183165583732905835
+      ggj25-waiter-idle2: 5735328256548086809
+      ggj25-waiter-interact: -994951839254565691
+      ggj25-waiter-pickup: 7107243805462749730
+      ggj25-waiter-smoke: 8465950686726669677
+      ggj25-waiter-smoke2: -2759483146797793398
+      ggj25-waiter-smoke3: 6674097819530257910
+      ggj25-waiter-smoke4: -8768095634919571236
+      ggj25-waiter-smoke5: 3022712863393467477
+      ggj25-waiter-walk-sil1: 5622130365144090079
+      ggj25-waiter-walk-sil2: 6384610738244372244
+      ggj25-waiter-walk1: 3187362363869476725
+      ggj25-waiter-walk2: 9060637486432118085
+      ggj25-waiter-walk3: -6724827775762591375
+      ggj25-waiter-walk4: -4204439989081626585
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
