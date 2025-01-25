@@ -5,6 +5,8 @@ public class CustomerSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject customerPrefab;
 
+    [SerializeField] private Transform spawnPoint;
+
     [SerializeField] private Table[] tables;
 
     [SerializeField] private float spawnRate = 5f;
@@ -23,7 +25,7 @@ public class CustomerSpawner : MonoBehaviour
             {
                 if (!chair.isChairOccupied)
                 {
-                    GameObject customer = Instantiate(customerPrefab, chair.transform.position, Quaternion.identity);
+                    GameObject customer = Instantiate(customerPrefab, spawnPoint.position, Quaternion.identity);
 
                     chair.isChairOccupied = true;
 
