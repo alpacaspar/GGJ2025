@@ -2,8 +2,9 @@ using UnityEngine;
 
 public class FoodInteractable : MonoBehaviour, IInteractable
 {
-    [SerializeField] private MenuType menuType;
-    [SerializeField] private Sprite[] menuItems;
+    public static System.Action<RestaurantMenuItem> OnInteracted;
+
+    [SerializeField] private RestaurantMenuItem[] menuItems;
 
     [SerializeField] private Vector2 preparationTimeRange;
 
@@ -53,9 +54,12 @@ public class FoodInteractable : MonoBehaviour, IInteractable
 
     private void StopPreparation()
     {
-        spriteRenderer.gameObject.SetActive(true);
-        spriteRenderer.sprite = menuItems[Random.Range(0, menuItems.Length)];
-
+        var preparedMenuItem = menuItems[Random.Range(0, menuItems.Length)];
         isPreparing = false;
+
+        spriteRenderer.gameObject.SetActive(true);
+        spriteRenderer.sprite = preparedMenuItem.ItemSprite;
+
+        OnInteracted?.Invoke(preparedMenuItem);
     }
 }

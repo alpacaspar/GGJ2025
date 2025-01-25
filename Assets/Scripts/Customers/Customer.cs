@@ -40,13 +40,9 @@ public class Customer : MonoBehaviour
             agent.speed = Random.Range(minSpeed, maxSpeed);
     }
 
-    private IEnumerator Start()
+    private void Start()
     {
-        GetComponent<TypingEffect>().StartTypingEffect(speakBubble);
-
-        yield return new WaitForSeconds(10);
-
-        GetComponent<TypingEffect>().StartTypingEffect(speakBubble);
+        GetComponent<TypingEffect>().StartTypingEffect(speakBubble, 0);
     }
 
     private void Update()

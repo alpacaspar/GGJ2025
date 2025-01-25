@@ -291,12 +291,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 3843677583761598026, guid: bf87b74ff7c255346b66e43700e75609, type: 3}
+  m_Sprite: {fileID: -3613083681165589139, guid: bfd200a352e14ea4fae7da756fc95ee6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.71875, y: 1.84375}
+  m_Size: {x: 0.25, y: 0.61}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -465,7 +465,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   typingSpped: 0.1
-  dialogueList: {fileID: 11400000, guid: c4852f07cb64d9f43bea06e3b98be3de, type: 2}
+  ovelapText: 0
+  dialogueList:
+  - angryStage: 0
+    dialogueObject: {fileID: 0}
+    stackable: 0
+  - angryStage: 0
+    dialogueObject: {fileID: 0}
+    stackable: 0
+  - angryStage: 0
+    dialogueObject: {fileID: 0}
+    stackable: 0
 --- !u!1 &4146040187867134287
 GameObject:
   m_ObjectHideFlags: 0
