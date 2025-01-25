@@ -383,10 +383,10 @@ MonoBehaviour:
   maxHunger: 150
   currentHunger: 100
   hungerDecreaseRate: 0.15
-  talkTier: 80
+  talkTier: 120
+  secondTalkTier: 100
   attentionTier: 60
-  orderTier: 40
-  secondTalkTier: 30
+  orderTier: 50
   hungerCurve:
     serializedVersion: 2
     m_Curve:
@@ -494,21 +494,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   typingSpped: 0.1
-  ovelapText: 0
   speakBubble: {fileID: 6006036038274473158}
   dialogueList:
-  - angryStage: 1
-    dialogueObject: {fileID: 11400000, guid: 789511df77604a74f8ec23f6ef23fa6a, type: 2}
-    stackable: 1
-  - angryStage: 2
-    dialogueObject: {fileID: 11400000, guid: c4852f07cb64d9f43bea06e3b98be3de, type: 2}
-    stackable: 1
-  - angryStage: 3
-    dialogueObject: {fileID: 11400000, guid: 569c07f3dd57dfe43a999694489133ce, type: 2}
-    stackable: 1
-  - angryStage: 4
-    dialogueObject: {fileID: 11400000, guid: 789511df77604a74f8ec23f6ef23fa6a, type: 2}
-    stackable: 1
+  - angryStage: 0
+    dialogueObject: {fileID: 0}
+    stackable: 0
+  - angryStage: 0
+    dialogueObject: {fileID: 0}
+    stackable: 0
+  - angryStage: 0
+    dialogueObject: {fileID: 0}
+    stackable: 0
   smallFontSize: 0
   fontSizeDownSpeed: 0
   fontSizeUpSpeed: 0
