@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEditor;
 using UnityEngine.AI;
+using TMPro;
 
 public class Customer : MonoBehaviour
 {
@@ -29,12 +30,20 @@ public class Customer : MonoBehaviour
 
     private bool isSeated = false;
 
+    [Header("SpeakBubble")]
+    [SerializeField] private TextMeshProUGUI speakBubble;
+
     private void Awake()
     {
         patience = Random.Range(minPatience, maxPatience);
 
         if (randomSpeed)
             agent.speed = Random.Range(minSpeed, maxSpeed);
+    }
+
+    private void Start()
+    {
+        GetComponent<TypingEffect>().StartTypingEffect(speakBubble);
     }
 
     private void Update()

@@ -230,6 +230,7 @@ GameObject:
   - component: {fileID: 8960505223294505811}
   - component: {fileID: 8497089408871832844}
   - component: {fileID: 1805522981160724573}
+  - component: {fileID: 8945612225026639189}
   m_Layer: 0
   m_Name: Customer
   m_TagString: Untagged
@@ -383,6 +384,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   jumpDuration: 0.5
+  speakBubble: {fileID: 6593775749703162935}
 --- !u!195 &8497089408871832844
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -417,6 +419,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62838ec55ed17684e914918e19f53585, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8945612225026639189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4062418340727045834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 532addfb4ddb573449e95f850680b9ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  typingSpped: 0.1
+  dialogueList: {fileID: 11400000, guid: c4852f07cb64d9f43bea06e3b98be3de, type: 2}
 --- !u!1 &4146040187867134287
 GameObject:
   m_ObjectHideFlags: 0
