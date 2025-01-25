@@ -42,6 +42,9 @@ public class TypingEffect : MonoBehaviour
     [SerializeField] private float shakePower;
     [SerializeField] private float chageColorRedSpeed;
     [SerializeField] private Image bubbleImage;
+    [SerializeField] private Color baseColor;
+    [SerializeField] private Color redColor;
+    [SerializeField] private AnimationCurve lerpCurve;
 
     private void Awake()
     {
@@ -194,18 +197,13 @@ public class TypingEffect : MonoBehaviour
 
         speakBubble.SetActive(false);
     }
-    #endregion
-
     public void ChangeColorToRed(float angry)
     {
-        // angry 값을 0~300 범위로 정규화
         float normalizedAngry = Mathf.Clamp01(angry / 300f);
+        float curveValue = lerpCurve.Evaluate(normalizedAngry);
 
-        // angry가 클수록 붉은색 (255)에 가까워지도록 계산
-        float redValue = Mathf.Lerp(255f, 0f, normalizedAngry);
-
-        // 색상 설정 (255 범위를 0~1로 변환)
-        bubbleImage.color = new Color(redValue / 255f, 1f, 1f);
+        // Lerp between baseColor and redColor based on curveValue
+        bubbleImage.color = Color.Lerp(redColor, baseColor, curveValue);
     }
-
+    #endregion
 }

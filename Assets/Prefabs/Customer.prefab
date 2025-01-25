@@ -380,7 +380,6 @@ MonoBehaviour:
   randomSpeed: 0
   minSpeed: 1
   maxSpeed: 1
-  maxHunger: 300
   currentHunger: 300
   hungerDecreaseRate: 0.05
   talkTier: 280
@@ -388,7 +387,7 @@ MonoBehaviour:
   attentionTier: 200
   orderTier: 160
   angerTier: 50
-  hungerTier: 0
+  hungerLevel: 0
   hungerCurve:
     serializedVersion: 2
     m_Curve:
@@ -516,6 +515,45 @@ MonoBehaviour:
   smallFontSize: 0
   fontSizeDownSpeed: 0
   fontSizeUpSpeed: 0
+  shakeValue: 0
+  shakePower: 0
+  chageColorRedSpeed: 0
+  bubbleImage: {fileID: 0}
+  baseColor: {r: 1, g: 1, b: 1, a: 1}
+  redColor: {r: 1, g: 0, b: 0, a: 1}
+  lerpCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.7208847
+      value: 0.2577828
+      inSlope: 0.959202
+      outSlope: 0.959202
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &4146040187867134287
 GameObject:
   m_ObjectHideFlags: 0
