@@ -19,12 +19,12 @@ public class PlayerController : MonoBehaviour
 
     private void OnEnable()
     {
-        GameManager.Instance.OnStateChanged += GameOver_OnStateChanged;
+        GameManager.OnStateChanged += GameOver_OnStateChanged;
     }
 
     private void OnDisable()
     {
-        GameManager.Instance.OnStateChanged -= GameOver_OnStateChanged;
+        GameManager.OnStateChanged -= GameOver_OnStateChanged;
     }
 
 

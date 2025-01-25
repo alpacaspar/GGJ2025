@@ -8,12 +8,12 @@ public class PlayerSpawner : MonoBehaviour
 
     private void OnEnable()
     {
-        GameManager.Instance.OnStateChanged += Instance_OnStateChanged;
+        GameManager.OnStateChanged += Instance_OnStateChanged;
     }
 
     private void OnDisable()
     {
-        GameManager.Instance.OnStateChanged -= Instance_OnStateChanged;
+        GameManager.OnStateChanged -= Instance_OnStateChanged;
     }
 
     private void Instance_OnStateChanged(CurrentState state)

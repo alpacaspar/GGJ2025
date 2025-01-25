@@ -18,11 +18,11 @@ public class CustomerSpawner : MonoBehaviour
 
     private void OnEnable()
     {
-        GameManager.Instance.OnStateChanged += GameManager_OnStateChanged;
+        GameManager.OnStateChanged += GameManager_OnStateChanged;
     }
     private void OnDisable()
     {
-        GameManager.Instance.OnStateChanged -= GameManager_OnStateChanged;
+        GameManager.OnStateChanged -= GameManager_OnStateChanged;
     }
 
     private void GameManager_OnStateChanged(CurrentState state)

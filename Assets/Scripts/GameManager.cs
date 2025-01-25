@@ -9,7 +9,7 @@ public enum CurrentState
 
 public class GameManager : MonoBehaviour
 {
-    public event System.Action<CurrentState> OnStateChanged;
+    public static event System.Action<CurrentState> OnStateChanged;
 
     private static GameManager instance;
     public static GameManager Instance
