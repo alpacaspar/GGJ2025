@@ -57,3 +57,10 @@ Oh heeey~! I had no idea you worked here! Such a shame to see your pretty face s
 Oh, uh, hi! Uhm, if its okay with you I would like, if you don't mind, a meal... I mean, the, uh, the {00}, if you want.
 A {00}, and make it quick!
 Can I have 1 million {00}? Haha, just kidding! aren't I funny, hahahaha! I just want one {00} actually.
+
+#impatient
+I'm really getting hungry now.
+I had no idea it would take this long.
+If only I had known beforehand...
+We've waited for 20 minutes in line, twice, just to get into this store!
+That waiter really could do with some exercise... 

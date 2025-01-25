@@ -1,6 +1,5 @@
 using System.Collections;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -25,9 +24,9 @@ public class Customer : MonoBehaviour
     [SerializeField] private float currentHunger = 100;
     [SerializeField] private float hungerDecreaseRate = 0.15f;
     [SerializeField] private int talkTier = 70;
+    [SerializeField] private int secondTalkTier = 20;
     [SerializeField] private int attentionTier = 40;
     [SerializeField] private int orderTier = 10;
-    [SerializeField] private int secondTalkTier = 20;
     [SerializeField] private AnimationCurve hungerCurve;
     [SerializeField] private int hungerState = 4;
 
@@ -50,7 +49,6 @@ public class Customer : MonoBehaviour
     }
 
 
-
     private void Update()
     {
         if (isSeated && currentHunger > 0)
@@ -58,18 +56,19 @@ public class Customer : MonoBehaviour
 
         float hungerRate = hungerCurve.Evaluate(elapsedTime);
 
-        currentHunger -= hungerRate * Time.deltaTime;
+        if (isSeated && currentHunger > 0)
+            currentHunger -= hungerRate * Time.deltaTime;
 
         int previousHungerState = hungerState;
 
         if (currentHunger > talkTier)
             hungerState = 4;
+        else if (currentHunger > secondTalkTier)
+            hungerState = 4;
         else if (currentHunger > attentionTier)
             hungerState = 3;
         else if (currentHunger > orderTier)
             hungerState = 2;
-        else if (currentHunger > secondTalkTier)
-            hungerState = 4;
         else
             hungerState = 1;
 
