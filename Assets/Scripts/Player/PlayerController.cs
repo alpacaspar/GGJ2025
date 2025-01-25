@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour, PlayerInputActionsAsset.IPlayerActions
+public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 3.0f;
 
@@ -12,20 +12,7 @@ public class PlayerController : MonoBehaviour, PlayerInputActionsAsset.IPlayerAc
 
     private void Awake()
     {
-        inputActionAsset = new PlayerInputActionsAsset();
-        inputActionAsset.Enable();
-
         characterController = GetComponent<CharacterController>();
-    }
-
-    public void OnEnable()
-    {
-        inputActionAsset.Player.AddCallbacks(this);
-    }
-
-    private void OnDisable()
-    {
-        inputActionAsset.Player.RemoveCallbacks(this);
     }
 
     private void Update()
@@ -39,7 +26,4 @@ public class PlayerController : MonoBehaviour, PlayerInputActionsAsset.IPlayerAc
         moveInput = context.ReadValue<Vector2>();
     }
 
-    public void OnInteract(InputAction.CallbackContext context)
-    {
-    }
 }
