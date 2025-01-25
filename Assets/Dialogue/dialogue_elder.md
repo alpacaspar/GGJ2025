@@ -27,8 +27,8 @@ Can you come over here Rupert?
 I've made a decision and would like to order, please.
 
 #orders
-Oh, there you are, dearie! A pleasure to see you again.
-Oh, you quite
+Oh, there you are, dearie! A pleasure to see you again. It's been such a long time since I've seen you last
+Oh, you remind me of Felicia you know that? Just as tender and spindly. She'd always acompany me when picking flowers, never seen a sweeter girl
 
 #impatient
 Well aren't you a humdrum little lad.
