@@ -54,8 +54,6 @@ public class Customer : MonoBehaviour
         else
             speed = minSpeed;
 
-        allDishes = AllDishes.instance;
-
         typingEffect = GetComponent<TypingEffect>();
 
         // Find the CustomerSpawner in the scene and get the spawnPoint
