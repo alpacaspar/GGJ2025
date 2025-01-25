@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEditor;
 using UnityEngine.AI;
 using TMPro;
 
@@ -41,8 +40,12 @@ public class Customer : MonoBehaviour
             agent.speed = Random.Range(minSpeed, maxSpeed);
     }
 
-    private void Start()
+    private IEnumerator Start()
     {
+        GetComponent<TypingEffect>().StartTypingEffect(speakBubble);
+
+        yield return new WaitForSeconds(10);
+
         GetComponent<TypingEffect>().StartTypingEffect(speakBubble);
     }
 
