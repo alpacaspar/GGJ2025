@@ -3,6 +3,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerInteractor : MonoBehaviour, IInteractable
 {
+    [SerializeField] private PlayerAnimator playerAnimator;
+
     private IInteractable currentInteractable;
 
     // Can be used to check on the customer if the player has the correct menu item.
@@ -43,6 +45,7 @@ public class PlayerInteractor : MonoBehaviour, IInteractable
         if (currentInteractable != null && currentInteractable.CanInteract(this))
         {
             currentInteractable.Interact(this);
+            playerAnimator.TriggerInteract();
         }
     }
 

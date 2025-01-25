@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 3.0f;
+    [SerializeField] private PlayerAnimator playerAnimator;
 
     private CharacterController characterController;
     private PlayerInput input;
@@ -36,6 +37,7 @@ public class PlayerController : MonoBehaviour
     public void OnMove(InputAction.CallbackContext context)
     {
         moveInput = context.ReadValue<Vector2>();
+        playerAnimator.SetMoveDirection(moveInput);
     }
 
     private void GameOver_OnStateChanged(CurrentState state)

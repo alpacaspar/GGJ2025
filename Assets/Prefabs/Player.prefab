@@ -10,8 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 3136107084786774770}
   - component: {fileID: 386258597245952091}
+  - component: {fileID: 5218253935660228520}
+  - component: {fileID: 1671986992416596469}
   m_Layer: 0
-  m_Name: Capsule
+  m_Name: PlayerSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
+  m_Sprite: {fileID: 5183165583732905835, guid: 9a3f6919b4555224a8894d60f2f33618, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -87,6 +89,40 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &5218253935660228520
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1202873837413411953}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1e0b07c33df2f7f468e408782bb0a359, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1671986992416596469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1202873837413411953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a819e93d9aa58204eba6442653efc798, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2578625701944556552
 GameObject:
   m_ObjectHideFlags: 0
@@ -147,7 +183,7 @@ CapsuleCollider:
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!143 &5686567625396145853
 CharacterController:
   m_ObjectHideFlags: 0
@@ -172,7 +208,7 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &7012312899727494068
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,6 +222,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 3
+  playerAnimator: {fileID: 1671986992416596469}
 --- !u!114 &8385908317104032306
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -198,6 +235,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ca4b0816f0242e459db7b2632a5fc24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerAnimator: {fileID: 1671986992416596469}
 --- !u!114 &6708300018185677363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -297,7 +335,7 @@ MonoBehaviour:
     m_ActionName: UI/TrackedDeviceOrientation
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
-  m_DefaultActionMap: df70fa95-8a34-4494-b137-73ab6b9c7d37
+  m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!1 &2822661094090020685
@@ -354,7 +392,7 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Radius: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!54 &6075304844221949429
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -394,3 +432,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ca4b0816f0242e459db7b2632a5fc24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerAnimator: {fileID: 1671986992416596469}
