@@ -375,6 +375,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetChair: {fileID: 0}
+  allDishes: {fileID: 0}
   agent: {fileID: 8497089408871832844}
   randomSpeed: 0
   minSpeed: 1
@@ -494,6 +495,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   typingSpped: 0.1
   ovelapText: 0
+  speakBubble: {fileID: 6006036038274473158}
   dialogueList:
   - angryStage: 1
     dialogueObject: {fileID: 11400000, guid: 789511df77604a74f8ec23f6ef23fa6a, type: 2}
@@ -507,6 +509,9 @@ MonoBehaviour:
   - angryStage: 4
     dialogueObject: {fileID: 11400000, guid: 789511df77604a74f8ec23f6ef23fa6a, type: 2}
     stackable: 1
+  smallFontSize: 0
+  fontSizeDownSpeed: 0
+  fontSizeUpSpeed: 0
 --- !u!1 &4146040187867134287
 GameObject:
   m_ObjectHideFlags: 0

@@ -31,6 +31,10 @@ public class TypingEffect : MonoBehaviour
     [SerializeField] private float fontSizeUpSpeed;
     private bool isFontToSmallCorutineRunning = false;
 
+    [Header("ExistingTasks")]
+    private IEnumerator currentTalkingCoroutine;
+    private string existingCompletionText;
+
     private void Awake()
     {
         tmp = GetComponentInChildren<TextMeshProUGUI>();
@@ -39,8 +43,6 @@ public class TypingEffect : MonoBehaviour
     private void OnEnable()
     {
         SmokeInteractable.OnSmokeBreakStarted += FontSizeToSmall;
-
-        StartCoroutine(PopTest());
     }
 
     private void OnDisable()
@@ -61,16 +63,26 @@ public class TypingEffect : MonoBehaviour
     {
         //textBubble.text = "";
         string text;
-        text = dialogueList[angryStage].dialogueObject.dialogueTexts[Random.Range(0, dialogueList[angryStage].dialogueObject.dialogueTexts.Count)];
+        angryStage--;
+        text = dialogueList[angryStage].dialogueObject.dialogueTexts[Random.Range(0, dialogueList[angryStage].dialogueObject.dialogueTexts.Count - 1)];
         speakBubble.SetActive(true);
+
+        if(currentTalkingCoroutine != null)
+        {
+            StopAllCoroutines();
+            textBubble.text = existingCompletionText;
+        }
+        existingCompletionText = textBubble.text + "\n" + text;
 
         if (!dialogueList[angryStage].stackable)
         {
-            StartCoroutine(Co_TypingEffect(text, textBubble));
+            currentTalkingCoroutine = Co_TypingEffect(text, textBubble);
+            StartCoroutine(currentTalkingCoroutine);
         }
         else
         {
-            StartCoroutine(Co_TypingEffect(text, textBubble, true));
+            currentTalkingCoroutine = Co_TypingEffect(text, textBubble, true);
+            StartCoroutine(currentTalkingCoroutine);
         }
     }
 
@@ -83,6 +95,7 @@ public class TypingEffect : MonoBehaviour
             textBubble.text = stringBuilder.ToString();
             yield return new WaitForSeconds(typingSpped);
         }
+        currentTalkingCoroutine = null;
     }
 
     IEnumerator Co_TypingEffect(string text, TextMeshProUGUI textBubble, bool stackalbe)
@@ -98,6 +111,8 @@ public class TypingEffect : MonoBehaviour
         }
         textBubble.text += "... ";
         Debug.Log("Text Done");
+
+        currentTalkingCoroutine = null;
     }
     #endregion
 
@@ -152,16 +167,12 @@ public class TypingEffect : MonoBehaviour
     #region PopBubble
     public void PopBubble()
     {
+        currentTalkingCoroutine = null;
+        Debug.Log("PopBubble");
         StopAllCoroutines();
         tmp.text = "";
 
         speakBubble.SetActive(false);
-    }
-
-    IEnumerator PopTest()
-    {
-        yield return new WaitForSeconds(5f);
-        PopBubble();
     }
     #endregion
 }
