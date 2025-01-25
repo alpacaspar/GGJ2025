@@ -343,7 +343,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetChair: {fileID: 0}
   agent: {fileID: 8497089408871832844}
-  minPatience: 8
+  randomSpeed: 0
+  minSpeed: 1
+  maxSpeed: 1
+  minPatience: 10
   maxPatience: 15
   patience: 5
   jumpCurve:

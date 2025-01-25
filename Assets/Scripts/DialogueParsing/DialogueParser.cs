@@ -53,27 +53,43 @@ public class DialogueParser : EditorWindow
     {
         string[] fileLines = System.IO.File.ReadAllLines(path);
 
-        DialogueObject dialogueObject = CreateInstance<DialogueObject>();
-        dialogueObject.dialogueTexts = new List<string>();
+        DialogueObject dialogueObject = null;
+        List<DialogueObject> dialogueObjects = new List<DialogueObject>();
 
         foreach (string line in fileLines)
         {
-            if (!string.IsNullOrWhiteSpace(line))
+            if (line.StartsWith("#"))
             {
+                if (dialogueObject != null && dialogueObject.dialogueTexts.Count > 0)
+                {
+                    dialogueObjects.Add(dialogueObject);
+                }
+                dialogueObject = CreateInstance<DialogueObject>();
+                dialogueObject.dialogueTexts = new List<string>();
+            }
+            else if (!string.IsNullOrWhiteSpace(line))
+            {
+                if (dialogueObject == null)
+                {
+                    dialogueObject = CreateInstance<DialogueObject>();
+                    dialogueObject.dialogueTexts = new List<string>();
+                }
                 dialogueObject.dialogueTexts.Add(line);
             }
         }
 
-        string assetPath = $"Assets/DialogueObjects/{Path.GetFileNameWithoutExtension(path)}_Line.asset";
-        AssetDatabase.CreateAsset(dialogueObject, assetPath);
+        if (dialogueObject != null && dialogueObject.dialogueTexts.Count > 0)
+        {
+            dialogueObjects.Add(dialogueObject);
+        }
+
+        for (int i = 0; i < dialogueObjects.Count; i++)
+        {
+            string assetPath = $"Assets/DialogueObjects/{Path.GetFileNameWithoutExtension(path)}_Line_{i + 1}.asset";
+            AssetDatabase.CreateAsset(dialogueObjects[i], assetPath);
+        }
 
         AssetDatabase.SaveAssets();
         EditorUtility.DisplayDialog("Dialogue Parser", "Dialogue file parsed and saved as ScriptableObjects.", "OK");
     }
-}
-
-[System.Serializable]
-public class DialogueObject : ScriptableObject
-{
-    public List<string> dialogueTexts;
 }
