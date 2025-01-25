@@ -37,12 +37,12 @@ public class TypingEffect : MonoBehaviour
 
     private void OnEnable()
     {
-        CustomerInteractable.OnSmokeBreakStarted += FontSizeToSmall;
+        SmokeInteractable.OnSmokeBreakStarted += FontSizeToSmall;
     }
 
     private void OnDisable()
     {
-        CustomerInteractable.OnSmokeBreakStarted -= FontSizeToSmall;
+        SmokeInteractable.OnSmokeBreakStarted -= FontSizeToSmall;
     }
 
     private void Update()
