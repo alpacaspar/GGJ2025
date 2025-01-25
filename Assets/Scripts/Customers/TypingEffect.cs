@@ -15,13 +15,45 @@ public class DialogueList
 
 public class TypingEffect : MonoBehaviour
 {
+    TextMeshProUGUI tmp;
+
     [Header("TypingSetting")]
     [SerializeField] private float typingSpped = 0f;
     [SerializeField] private bool ovelapText = false;
 
     [Header("TypingList")]
-    [SerializeField] private List<DialogueList> dialogueList = new List<DialogueList> ();
+    [SerializeField] private List<DialogueList> dialogueList = new List<DialogueList>();
 
+    [Header("SmokeSetting")]
+    [SerializeField] private float smallFontSize;
+    [SerializeField] private float fontSizeDownSpeed;
+    [SerializeField] private float fontSizeUpSpeed;
+    private bool isFontToSmallCorutineRunning = false;
+
+    private void Awake()
+    {
+        tmp = GetComponentInChildren<TextMeshProUGUI>();
+    }
+
+    private void OnEnable()
+    {
+        CustomerInteractable.OnSmokeBreakStarted += FontSizeToSmall;
+    }
+
+    private void OnDisable()
+    {
+        CustomerInteractable.OnSmokeBreakStarted -= FontSizeToSmall;
+    }
+
+    private void Update()
+    {
+        if (!isFontToSmallCorutineRunning)
+        {
+            FontSizeUp();
+        }
+    }
+
+    #region TypingEffect
     public void StartTypingEffect(TextMeshProUGUI textBubble, int angryStage)
     {
         //textBubble.text = "";
@@ -60,7 +92,31 @@ public class TypingEffect : MonoBehaviour
             textBubble.text = originalText + "\n" + stringBuilder.ToString();
             yield return new WaitForSeconds(typingSpped);
         }
-            textBubble.text += "... ";
+        textBubble.text += "... ";
         Debug.Log("Text Done");
     }
+    #endregion
+
+    #region FontSizeEffect
+    public void FontSizeToSmall()
+    {
+        StartCoroutine(Co_FontSizeToSmall());
+    }
+
+    IEnumerator Co_FontSizeToSmall()
+    {
+        isFontToSmallCorutineRunning = true;
+        while(tmp.fontSize <= smallFontSize)
+        {
+            tmp.fontSize = Mathf.Lerp(tmp.fontSize, smallFontSize, fontSizeDownSpeed);
+            yield return null;
+        }
+        isFontToSmallCorutineRunning = false;
+    }
+
+    public void FontSizeUp()
+    {
+        tmp.fontSize += fontSizeUpSpeed;
+    }
+    #endregion
 }
