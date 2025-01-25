@@ -383,6 +383,36 @@ MonoBehaviour:
   minPatience: 10
   maxPatience: 15
   patience: 5
+  maxHunger: 100
+  currentHunger: 30
+  hungerDecreaseRate: 0.05
+  tier1Hunger: 70
+  tier2Hunger: 40
+  tier3Hunger: 10
+  hungerCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 4.4657974
+      inSlope: 3.7282372
+      outSlope: 3.7282372
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.18113697
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   jumpCurve:
     serializedVersion: 2
     m_Curve:
