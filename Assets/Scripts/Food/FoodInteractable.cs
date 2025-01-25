@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class FoodInteractable : MonoBehaviour, IInteractable
+public class FoodInteractable : InteractableBehaviour
 {
     public static System.Action<RestaurantMenuItem> OnInteracted;
 
@@ -14,7 +14,7 @@ public class FoodInteractable : MonoBehaviour, IInteractable
 
     private void Awake()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
 
         StartPreparation();
     }
@@ -33,12 +33,12 @@ public class FoodInteractable : MonoBehaviour, IInteractable
     }
 
     // Already called from the player interactor. So no need to implement ourselves.
-    public bool CanInteract(IInteractable interactor)
+    public override bool CanInteract(InteractableBehaviour interactor)
     {
         return !isPreparing;
     }
 
-    public void Interact(IInteractable interactor)
+    public override void Interact(InteractableBehaviour interactor)
     {
         StartPreparation();
     }

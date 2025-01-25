@@ -1,16 +1,15 @@
 using System;
-using UnityEngine;
 
-public class SmokeInteractable : MonoBehaviour, IInteractable
+public class SmokeInteractable : InteractableBehaviour
 {
     public static event Action OnSmokeBreakStarted;
 
-    public bool CanInteract(IInteractable interactor)
+    public override bool CanInteract(InteractableBehaviour interactor)
     {
         return true;
     }
 
-    public void Interact(IInteractable interactor)
+    public override void Interact(InteractableBehaviour interactor)
     {
         OnSmokeBreakStarted?.Invoke();
     }
