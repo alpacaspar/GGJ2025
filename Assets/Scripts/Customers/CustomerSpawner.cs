@@ -1,47 +1,66 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CustomerSpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject customerPrefab;
-
+    [SerializeField] public List<CustomerGroup> customerGroups;
     [SerializeField] private Transform spawnPoint;
-
     [SerializeField] private Table[] tables;
+    [SerializeField] private float spawnRate = 50f;
+    [SerializeField] private int customerAmount;
 
-    [SerializeField] private float spawnRate = 5f;
-    [SerializeField] private float customerAmount;
+    private Queue<CustomerGroup> waitingQueue = new Queue<CustomerGroup>();
 
     private void Start()
     {
+        foreach (CustomerGroup customerGroup in customerGroups)
+            customerAmount += customerGroup.customers.Length;
+
         StartCoroutine(SpawnCustomerCoroutine());
     }
 
-    private void SpawnCustomer()
+    private void SpawnCustomerGroup(CustomerGroup customerGroup)
     {
         foreach (Table table in tables)
         {
-            foreach (Chair chair in table.chairs)
+            if (!table.isTableOccupied && customerGroup.CanSitAtTable(table))
             {
-                if (!chair.isChairOccupied)
+                table.isTableOccupied = true; // Mark the table as occupied
+                foreach (Customer customer in customerGroup.customers)
                 {
-                    GameObject customer = Instantiate(customerPrefab, spawnPoint.position, Quaternion.identity);
-
-                    chair.isChairOccupied = true;
-
-                    customer.GetComponent<Customer>().targetChair = chair;
-
-                    return;
+                    GameObject customerObject = Instantiate(customer, spawnPoint.position, Quaternion.identity).gameObject;
+                    foreach (Chair chair in table.chairs)
+                    {
+                        if (!chair.isChairOccupied)
+                        {
+                            chair.isChairOccupied = true;
+                            customerObject.GetComponent<Customer>().targetChair = chair;
+                            break;
+                        }
+                    }
                 }
+                return;
             }
         }
+        waitingQueue.Enqueue(customerGroup);
     }
 
     private IEnumerator SpawnCustomerCoroutine()
     {
         for (int i = 0; i < customerAmount; i++)
         {
-            SpawnCustomer();
+            if (i < customerGroups.Count)
+            {
+                SpawnCustomerGroup(customerGroups[i]);
+            }
+            yield return new WaitForSeconds(spawnRate);
+        }
+
+        while (waitingQueue.Count > 0)
+        {
+            CustomerGroup customerGroup = waitingQueue.Dequeue();
+            SpawnCustomerGroup(customerGroup);
             yield return new WaitForSeconds(spawnRate);
         }
     }

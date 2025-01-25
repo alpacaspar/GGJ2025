@@ -16,13 +16,6 @@ public class Customer : MonoBehaviour
     [Range(1f, 10f)]
     [SerializeField] private float maxSpeed = 1f;
 
-    [Header("Patience")]
-    [Range(10f, 60f)]
-    [SerializeField] private int minPatience = 5;
-    [Range(10f, 60f)]
-    [SerializeField] private int maxPatience = 5;
-    [SerializeField] private int patience = 5;
-
     [Header("Hunger")]
     [SerializeField] private float maxHunger = 100;
     [SerializeField] private float currentHunger = 100;
@@ -45,15 +38,12 @@ public class Customer : MonoBehaviour
 
     private void Awake()
     {
-        patience = Random.Range(minPatience, maxPatience);
-
         if (randomSpeed)
             agent.speed = Random.Range(minSpeed, maxSpeed);
     }
 
     private void Start()
     {
-        GetComponent<TypingEffect>().StartTypingEffect(speakBubble, 0);
         GetComponent<TypingEffect>().StartTypingEffect(speakBubble, hungerState);
     }
 
@@ -106,15 +96,5 @@ public class Customer : MonoBehaviour
 
         transform.SetPositionAndRotation(endPosition, endRotation);
         isSeated = true;
-        StartCoroutine(TimeAliveCoroutine(patience));
-    }
-
-    private IEnumerator TimeAliveCoroutine(float time)
-    {
-        yield return new WaitForSeconds(time);
-        Debug.Log("Customer is waiting for " + time + " seconds.");
-        Debug.Log("Customer is leaving.");
-        targetChair.isChairOccupied = false;
-        Destroy(gameObject);
     }
 }
