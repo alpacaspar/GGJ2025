@@ -5,14 +5,21 @@ using UnityEngine.AI;
 
 public class Customer : MonoBehaviour
 {
+    [Header("Chair")]
     public Chair targetChair;
 
+    [Header("AI Agent")]
     [SerializeField] private NavMeshAgent agent;
+    [SerializeField] private bool randomSpeed = false;
+    [Range(1f, 10f)]
+    [SerializeField] private float minSpeed = 1f;
+    [Range(1f, 10f)]
+    [SerializeField] private float maxSpeed = 1f;
 
     [Header("Patience")]
-    [Range(1f, 20f)]
+    [Range(10f, 60f)]
     [SerializeField] private int minPatience = 5;
-    [Range(1f, 20f)]
+    [Range(10f, 60f)]
     [SerializeField] private int maxPatience = 5;
     [SerializeField] private int patience = 5;
 
@@ -25,6 +32,9 @@ public class Customer : MonoBehaviour
     private void Awake()
     {
         patience = Random.Range(minPatience, maxPatience);
+
+        if (randomSpeed)
+            agent.speed = Random.Range(minSpeed, maxSpeed);
     }
 
     private void Update()

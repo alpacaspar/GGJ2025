@@ -2,7 +2,6 @@
  ... ... 
 
 #banter
---
 We are amidst strange beings, in a strange land. The flow of time itself is convoluted; with heroes centuries old phasing in and out. The very fabric wavers, and relations shift and obscure. The sun is a wondrous body. Like a magnificent father! If only I could be so grossly incandescent!
 You know, that's always something I've wondered about.
 I've never been able to justify spending the money for it, but it could be a good idea still.
