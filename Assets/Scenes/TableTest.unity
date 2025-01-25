@@ -1113,6 +1113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d7fb275296daea49b32e77755601a25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTableOccupied: 0
   chairs:
   - {fileID: 266773681}
   - {fileID: 881315795}
@@ -1975,6 +1976,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d7fb275296daea49b32e77755601a25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTableOccupied: 0
   chairs:
   - {fileID: 1275995122}
   - {fileID: 1813343816}
@@ -2105,6 +2107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d7fb275296daea49b32e77755601a25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTableOccupied: 0
   chairs:
   - {fileID: 162329613}
   - {fileID: 1863433911}
@@ -2235,6 +2238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d7fb275296daea49b32e77755601a25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTableOccupied: 0
   chairs:
   - {fileID: 2052941607}
   - {fileID: 623013114}
@@ -2487,6 +2491,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d7fb275296daea49b32e77755601a25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTableOccupied: 0
   chairs:
   - {fileID: 653551188}
   - {fileID: 1367029094}
@@ -4000,6 +4005,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d7fb275296daea49b32e77755601a25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTableOccupied: 0
   chairs:
   - {fileID: 1071620057}
   - {fileID: 1964388895}
@@ -4496,6 +4502,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d7fb275296daea49b32e77755601a25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTableOccupied: 0
   chairs:
   - {fileID: 142739025}
   - {fileID: 2103674348}
@@ -5448,6 +5455,59 @@ Transform:
   m_Children: []
   m_Father: {fileID: 673252180}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1839639044
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1839639046}
+  - component: {fileID: 1839639045}
+  m_Layer: 0
+  m_Name: TimeSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1839639045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1839639044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bde1d870b22cd84f879c2ae9407201a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentTime: 0
+  timerText: {fileID: 0}
+  maxPenalty: 5
+  currentPenalty: 0
+  penaltyText: {fileID: 0}
+  currentScore: 0
+  scoreUpdateValue: 10
+  scoreUpdateTimeValue: 1
+  scoreText: {fileID: 0}
+--- !u!4 &1839639046
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1839639044}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.1828525, y: -5.5030003, z: 2.885459}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1863433909
 GameObject:
   m_ObjectHideFlags: 0
@@ -5602,6 +5662,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d7fb275296daea49b32e77755601a25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTableOccupied: 0
   chairs:
   - {fileID: 882370958}
   - {fileID: 667899034}
@@ -5935,6 +5996,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d7fb275296daea49b32e77755601a25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTableOccupied: 0
   chairs:
   - {fileID: 487962564}
   - {fileID: 230807373}
@@ -6062,7 +6124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 249208bf4e580e949a6a6d6787bd6521, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  customerPrefab: {fileID: 4062418340727045834, guid: dbe34e1f0f0a22241a0638ba87f0b2b3, type: 3}
+  customerGroups: []
   spawnPoint: {fileID: 940969878}
   tables:
   - {fileID: 775071544}
@@ -6612,3 +6674,4 @@ SceneRoots:
   - {fileID: 463740874}
   - {fileID: 1978447127}
   - {fileID: 1944365581}
+  - {fileID: 1839639046}
