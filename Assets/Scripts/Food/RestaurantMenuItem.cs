@@ -5,4 +5,5 @@ public class RestaurantMenuItem : ScriptableObject
 {
     [field: SerializeField] public MenuType MenuType { get; private set; }
     [field: SerializeField] public Sprite ItemSprite { get; private set; }
+    [field: SerializeField] public string ItemName { get; private set; }
 }

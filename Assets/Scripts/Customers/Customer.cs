@@ -1,12 +1,16 @@
 using System.Collections;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
-using TMPro;
 
 public class Customer : MonoBehaviour
 {
     [Header("Chair")]
     public Chair targetChair;
+
+    [Header("Dishes")]
+    [SerializeField] private AllDishes allDishes;
 
     [Header("AI Agent")]
     [SerializeField] private NavMeshAgent agent;
@@ -19,12 +23,13 @@ public class Customer : MonoBehaviour
     [Header("Hunger")]
     [SerializeField] private float maxHunger = 100;
     [SerializeField] private float currentHunger = 100;
-    [SerializeField] private float hungerDecreaseRate = 1;
-    [SerializeField] private float tier1Hunger = 70;
-    [SerializeField] private float tier2Hunger = 40;
-    [SerializeField] private float tier3Hunger = 10;
+    [SerializeField] private float hungerDecreaseRate = 0.15f;
+    [SerializeField] private int talkTier = 70;
+    [SerializeField] private int attentionTier = 40;
+    [SerializeField] private int orderTier = 10;
+    [SerializeField] private int secondTalkTier = 20;
     [SerializeField] private AnimationCurve hungerCurve;
-    [SerializeField] private int hungerState;
+    [SerializeField] private int hungerState = 4;
 
     [Header("Jump Animation")]
     [SerializeField] private AnimationCurve jumpCurve;
@@ -40,27 +45,38 @@ public class Customer : MonoBehaviour
     {
         if (randomSpeed)
             agent.speed = Random.Range(minSpeed, maxSpeed);
+
+        allDishes = AllDishes.instance;
     }
 
-    private void Start()
-    {
-        GetComponent<TypingEffect>().StartTypingEffect(speakBubble, hungerState);
-    }
+
 
     private void Update()
     {
-        elapsedTime += Time.deltaTime;
+        if (isSeated && currentHunger > 0)
+            elapsedTime += Time.deltaTime;
 
         float hungerRate = hungerCurve.Evaluate(elapsedTime);
 
         currentHunger -= hungerRate * Time.deltaTime;
 
-        if (currentHunger <= tier3Hunger)
+        int previousHungerState = hungerState;
+
+        if (currentHunger > talkTier)
+            hungerState = 4;
+        else if (currentHunger > attentionTier)
             hungerState = 3;
-        else if (currentHunger <= tier2Hunger)
+        else if (currentHunger > orderTier)
             hungerState = 2;
-        else if (currentHunger <= tier1Hunger)
+        else if (currentHunger > secondTalkTier)
+            hungerState = 4;
+        else
             hungerState = 1;
+
+        if (hungerState != previousHungerState)
+        {
+            GetComponent<TypingEffect>().StartTypingEffect(speakBubble, hungerState, allDishes);
+        }
 
         if (targetChair != null && agent.enabled == true && !isSeated)
         {

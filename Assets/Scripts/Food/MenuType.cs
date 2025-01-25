@@ -1,6 +1,6 @@
 ﻿public enum MenuType
 {
     MainDish,
-    Salad,
+    SideDish,
     Drink,
 }
