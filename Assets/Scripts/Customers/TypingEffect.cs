@@ -72,12 +72,17 @@ public class TypingEffect : MonoBehaviour
         text = ReplacePlaceholders(text, allDishes);
         speakBubble.SetActive(true);
 
-        if (currentTalkingCoroutine != null)
+        if (currentTalkingCoroutine != null && !dialogueList[angryStage].stackable)
+        {
+            StopAllCoroutines();
+            textBubble.text = "";
+        }
+        else
         {
             StopAllCoroutines();
             textBubble.text = existingCompletionText;
+            existingCompletionText = textBubble.text + "\n" + text;
         }
-        existingCompletionText = textBubble.text + "\n" + text;
 
         if (!dialogueList[angryStage].stackable)
         {
