@@ -65,8 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Good sir. Can I get two number 9's, a number 9 large, a number 6 with extra
-    dip, two number 45's, one with cheese; and a large soda?
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -380,15 +379,13 @@ MonoBehaviour:
   randomSpeed: 0
   minSpeed: 1
   maxSpeed: 1
-  minPatience: 10
-  maxPatience: 15
-  patience: 5
-  maxHunger: 100
-  currentHunger: 30
-  hungerDecreaseRate: 0.05
-  tier1Hunger: 70
-  tier2Hunger: 40
-  tier3Hunger: 10
+  maxHunger: 150
+  currentHunger: 100
+  hungerDecreaseRate: 0.15
+  talkTier: 80
+  attentionTier: 60
+  orderTier: 40
+  secondTalkTier: 30
   hungerCurve:
     serializedVersion: 2
     m_Curve:
@@ -413,6 +410,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  hungerState: 0
   jumpCurve:
     serializedVersion: 2
     m_Curve:
@@ -497,15 +495,18 @@ MonoBehaviour:
   typingSpped: 0.1
   ovelapText: 0
   dialogueList:
-  - angryStage: 0
-    dialogueObject: {fileID: 0}
-    stackable: 0
-  - angryStage: 0
-    dialogueObject: {fileID: 0}
-    stackable: 0
-  - angryStage: 0
-    dialogueObject: {fileID: 0}
-    stackable: 0
+  - angryStage: 1
+    dialogueObject: {fileID: 11400000, guid: 789511df77604a74f8ec23f6ef23fa6a, type: 2}
+    stackable: 1
+  - angryStage: 2
+    dialogueObject: {fileID: 11400000, guid: c4852f07cb64d9f43bea06e3b98be3de, type: 2}
+    stackable: 1
+  - angryStage: 3
+    dialogueObject: {fileID: 11400000, guid: 569c07f3dd57dfe43a999694489133ce, type: 2}
+    stackable: 1
+  - angryStage: 4
+    dialogueObject: {fileID: 11400000, guid: 789511df77604a74f8ec23f6ef23fa6a, type: 2}
+    stackable: 1
 --- !u!1 &4146040187867134287
 GameObject:
   m_ObjectHideFlags: 0

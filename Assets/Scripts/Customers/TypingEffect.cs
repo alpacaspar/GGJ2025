@@ -54,7 +54,7 @@ public class TypingEffect : MonoBehaviour
     }
 
     #region TypingEffect
-    public void StartTypingEffect(TextMeshProUGUI textBubble, int angryStage)
+    public void StartTypingEffect(TextMeshProUGUI textBubble, int angryStage, AllDishes allDishes)
     {
         //textBubble.text = "";
         string text;
@@ -119,4 +119,30 @@ public class TypingEffect : MonoBehaviour
         tmp.fontSize += fontSizeUpSpeed;
     }
     #endregion
+
+    private string ReplacePlaceholders(string text, AllDishes allDishes)
+    {
+        RestaurantMenuItem mainDish = GetRandomItem(allDishes.allMainDish);
+        RestaurantMenuItem sideDish = GetRandomItem(allDishes.allSideDish);
+        RestaurantMenuItem drink = GetRandomItem(allDishes.allDrink);
+
+        string mDish = mainDish.ItemName;
+        string sDish = sideDish.ItemName;
+        string dDrink = drink.ItemName;
+
+        text = text.Replace("{01}", mDish);
+        text = text.Replace("{02}", sDish);
+        text = text.Replace("{00}", dDrink);
+
+        return text;
+    }
+
+    private RestaurantMenuItem GetRandomItem(List<RestaurantMenuItem> items)
+    {
+        if (items == null || items.Count == 0)
+        {
+            return null;
+        }
+        return items[Random.Range(0, items.Count)];
+    }
 }
