@@ -20,15 +20,12 @@ public class TypingEffect : MonoBehaviour
 
     IEnumerator Co_TypingEffect(string text, TextMeshProUGUI textBubble)
     {
-        Debug.Log("StartCoTyping StringCount : " + text.Length);
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < text.Length; i++)
         {
             stringBuilder.Append(text[i]);
             textBubble.text = stringBuilder.ToString();
-            Debug.Log("StartCoTyping StringCount : " + text.Length);
             yield return new WaitForSeconds(typingSpped);
-            Debug.Log("StartCoTypingCount : " +  i);
         }
     }
 }
