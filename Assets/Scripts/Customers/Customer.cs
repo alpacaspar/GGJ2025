@@ -23,11 +23,22 @@ public class Customer : MonoBehaviour
     [SerializeField] private int maxPatience = 5;
     [SerializeField] private int patience = 5;
 
+    [Header("Hunger")]
+    [SerializeField] private float maxHunger = 100;
+    [SerializeField] private float currentHunger = 100;
+    [SerializeField] private float hungerDecreaseRate = 1;
+    [SerializeField] private float tier1Hunger = 70;
+    [SerializeField] private float tier2Hunger = 40;
+    [SerializeField] private float tier3Hunger = 10;
+    [SerializeField] private AnimationCurve hungerCurve;
+    [SerializeField] private int hungerState;
+
     [Header("Jump Animation")]
     [SerializeField] private AnimationCurve jumpCurve;
     [SerializeField] private float jumpDuration = 1f;
 
     private bool isSeated = false;
+    private float elapsedTime = 0f;
 
     [Header("SpeakBubble")]
     [SerializeField] private TextMeshProUGUI speakBubble;
@@ -43,14 +54,25 @@ public class Customer : MonoBehaviour
     private void Start()
     {
         GetComponent<TypingEffect>().StartTypingEffect(speakBubble, 0);
+        GetComponent<TypingEffect>().StartTypingEffect(speakBubble, hungerState);
     }
 
     private void Update()
     {
-        if (isSeated)
-            return;
+        elapsedTime += Time.deltaTime;
 
-        if (targetChair != null && agent.enabled == true)
+        float hungerRate = hungerCurve.Evaluate(elapsedTime);
+
+        currentHunger -= hungerRate * Time.deltaTime;
+
+        if (currentHunger <= tier3Hunger)
+            hungerState = 3;
+        else if (currentHunger <= tier2Hunger)
+            hungerState = 2;
+        else if (currentHunger <= tier1Hunger)
+            hungerState = 1;
+
+        if (targetChair != null && agent.enabled == true && !isSeated)
         {
             agent.SetDestination(targetChair.transform.position);
             if (agent.remainingDistance <= agent.stoppingDistance && !agent.pathPending)

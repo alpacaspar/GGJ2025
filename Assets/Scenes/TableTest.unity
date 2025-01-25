@@ -6075,7 +6075,7 @@ MonoBehaviour:
   - {fileID: 463740870}
   - {fileID: 1978447123}
   spawnRate: 1
-  customerAmount: 40
+  customerAmount: 1
 --- !u!4 &2039198368
 Transform:
   m_ObjectHideFlags: 0
