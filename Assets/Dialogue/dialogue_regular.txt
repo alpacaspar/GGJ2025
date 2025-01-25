@@ -1,4 +1,39 @@
+{connector}
+ ... ... 
+
 {banter}
+We are amidst strange beings, in a strange land. The flow of time itself is convoluted; with heroes centuries old phasing in and out. The very fabric wavers, and relations shift and obscure. The sun is a wondrous body. Like a magnificent father! If only I could be so grossly incandescent!
+You know, that's always something I've wondered about.
+I've never been able to justify spending the money for it, but it could be a good idea still.
+Is that really all there is to it?
+Hey, it's really insensitive to joke about that!
+Hello!? Are you listening to yourself?
+I can't say...
+Oh man, I finally got it!
+Alright, Alright, I see.
+Oh you can say that again!
+And then they were like: "You can't be serious!"
+And then they were like: "I've been saying that!"
+And then they were like: "I will miss you."
+And then they were like: "I know right!?"
+And then they were like: "I'm leaving."
+And then they were like: "I guess you got a point."
+And then they were like: "So that's it?"
+Ooooooooh...
+I don't get it.
+That is fair.
+There's that guy from the other place that always does that!
+That woman gets on my nerves!
+Surely it can't be the same person?
+Do you really think I should do it? Even after all this time?
+No way that that's going to go well.
+Yeah, I've heard about that before!
+Didn't think that was actually real. Damn!
+Did you know you have a gorgeous pair of eyes?
+Wait, I can't believe I never noticed!
+Do your eyes have heterophobia!?
+I got this new tablecloth that is hydrophobic, kinda like this one. It's amazing how easy it is to clean!
+I got this new tablecloth that is homophobic, kinda like this one. It's amazing how easy it is to clean!
 
 
 {calling}
@@ -10,6 +45,8 @@ Hey, I'm ready to order.
 Hello, waiter?
 Man, I can't wait to order!
 Ah, there you are! I know what I'd like now.
+Hey!
+Waiter, please!
 
 {orders}
 Hello, I would like a {00} with some {01}.
@@ -20,3 +57,4 @@ Oi! What's your name? I can't really read your badge, are you a misplaced plate 
 Oh heeey~! I had no idea you worked here! Such a shame to see your pretty face squandered on a place like this! I'll help you out babe~, I want you to bring me a {00}, and I like it "hot~", capiche? Oh, and if you want if you want a good "tip~" be sure to leave your number... I just know you can earn some good money~ with me.
 Oh, uh, hi! Uhm, if its okay with you I would like, if you don't mind, a meal... I mean, the, uh, the {00}, if you want.
 A {00}, and make it quick!
+Can I have 1 million {00}? Haha, just kidding! aren't I funny, hahahaha! I just want one {00} actually. //this was an adaptation of kris trying to be funny by ordering 1 million beers
