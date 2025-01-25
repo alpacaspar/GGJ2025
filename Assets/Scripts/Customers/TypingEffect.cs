@@ -39,6 +39,7 @@ public class TypingEffect : MonoBehaviour
     [SerializeField] private float shakePower;
     [SerializeField] private float chageColorRedSpeed;
     [SerializeField] private Image bubbleImage;
+    [SerializeField] private Animation bubblePop;
     [SerializeField] private Color baseColor;
     [SerializeField] private Color redColor;
     [SerializeField] private AnimationCurve lerpCurve;
@@ -184,9 +185,11 @@ public class TypingEffect : MonoBehaviour
         }
         return items[Random.Range(0, items.Count)];
     }
+    
     #region PopBubble
     public void PopBubble()
     {
+        bubblePop.Play();
         currentTalkingCoroutine = null;
         Debug.Log("PopBubble");
         StopAllCoroutines();

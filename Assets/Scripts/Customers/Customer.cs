@@ -79,11 +79,26 @@ public class Customer : MonoBehaviour
             MoveTowardsTarget(targetChair.transform.position);
         }
 
+        if(transform.position == targetChair.transform.position)
+        {
+            isSeated = true;
+            targetChair.isChairOccupied = true;
+        }
+
         // Check if currentHunger is less than or equal to 0
         if (currentHunger <= 0 && !isMovingAway)
         {
             isMovingAway = true;
+            MoveTowardsTarget(spawnPoint);
+
+            if(transform.position == spawnPoint)
+            {
+                targetChair.isChairOccupied = false;
+                typingEffect.PopBubble();
+                Destroy(gameObject);
+            }
         }
+
     }
 
     private void MoveTowardsTarget(Vector3 targetPosition)
@@ -115,28 +130,28 @@ public class Customer : MonoBehaviour
         }
     }
 
-    private IEnumerator JumpOffChair()
-    {
-        Vector3 startPosition = transform.position;
-        Vector3 endPosition = startPosition + transform.forward * -1; // Move one unit forward
+    //private IEnumerator JumpOffChair()
+    //{
+    //    Vector3 startPosition = transform.position;
+    //    Vector3 endPosition = startPosition + transform.forward * -1; // Move one unit forward
 
-        float elapsedTime = 0f;
+    //    float elapsedTime = 0f;
 
-        while (elapsedTime < jumpDuration)
-        {
-            float t = elapsedTime / jumpDuration;
-            float height = jumpCurve.Evaluate(t);
+    //    while (elapsedTime < jumpDuration)
+    //    {
+    //        float t = elapsedTime / jumpDuration;
+    //        float height = jumpCurve.Evaluate(t);
 
-            transform.position = Vector3.Lerp(startPosition, endPosition, t) + Vector3.up * height;
+    //        transform.position = Vector3.Lerp(startPosition, endPosition, t) + Vector3.up * height;
 
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
+    //        elapsedTime += Time.deltaTime;
+    //        yield return null;
+    //    }
 
-        transform.SetPositionAndRotation(endPosition, Quaternion.identity);
-        isSeated = false;
-        typingEffect.PopBubble();
-        StopCoroutine(JumpOffChair());
-        MoveTowardsTarget(spawnPoint);
-    }
+    //    transform.SetPositionAndRotation(endPosition, Quaternion.identity);
+    //    isSeated = false;
+    //    typingEffect.PopBubble();
+    //    StopCoroutine(JumpOffChair());
+    //    MoveTowardsTarget(spawnPoint);
+    //}
 }
