@@ -19,7 +19,6 @@ public class TypingEffect : MonoBehaviour
 
     [Header("TypingSetting")]
     [SerializeField] private float typingSpped = 0f;
-    [SerializeField] private bool ovelapText = false;
     [SerializeField] private GameObject speakBubble;
 
     [Header("TypingList")]
@@ -65,9 +64,10 @@ public class TypingEffect : MonoBehaviour
         string text;
         angryStage--;
         text = dialogueList[angryStage].dialogueObject.dialogueTexts[Random.Range(0, dialogueList[angryStage].dialogueObject.dialogueTexts.Count - 1)];
+        text = ReplacePlaceholders(text, allDishes);
         speakBubble.SetActive(true);
 
-        if(currentTalkingCoroutine != null)
+        if (currentTalkingCoroutine != null)
         {
             StopAllCoroutines();
             textBubble.text = existingCompletionText;
@@ -125,7 +125,7 @@ public class TypingEffect : MonoBehaviour
     IEnumerator Co_FontSizeToSmall()
     {
         isFontToSmallCorutineRunning = true;
-        while(tmp.fontSize <= smallFontSize)
+        while (tmp.fontSize <= smallFontSize)
         {
             tmp.fontSize = Mathf.Lerp(tmp.fontSize, smallFontSize, fontSizeDownSpeed);
             yield return null;
