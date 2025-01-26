@@ -85,6 +85,7 @@ public class PlayerInteractor : InteractableBehaviour
     {
         currentCarriedItem = item;
         foodObject.GetComponent<SpriteRenderer>().sprite = currentCarriedItem.ItemSprite;
+        foodObject.transform.localScale = Vector3.one * 1.5f;
         foodObject.SetActive(true);
     }
 }
