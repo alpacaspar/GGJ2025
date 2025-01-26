@@ -22,7 +22,7 @@ public class TypingEffect : MonoBehaviour
     [SerializeField] private GameObject speakBubble;
 
     [Header("TypingList")]
-    [SerializeField] private List<DialogueList> dialogueList = new List<DialogueList>();
+    [SerializeField] private List<DialogueList> dialogueList = new();
 
     [Header("SmokeSetting")]
     [SerializeField] private float smallFontSize;
@@ -39,7 +39,7 @@ public class TypingEffect : MonoBehaviour
     [SerializeField] private float shakePower;
     [SerializeField] private float chageColorRedSpeed;
     [SerializeField] private Image bubbleImage;
-    [SerializeField] private Animation bubblePop;
+    [SerializeField] private Animator bubbleAnimator;
     [SerializeField] private Color baseColor;
     [SerializeField] private Color redColor;
     [SerializeField] private AnimationCurve lerpCurve;
@@ -77,61 +77,49 @@ public class TypingEffect : MonoBehaviour
             return;
         }
 
+        var dish = allDishes.GetRandom();
+        
         string text;
         angryStage--;
         text = dialogueList[angryStage].dialogueObject.dialogueTexts[Random.Range(0, dialogueList[angryStage].dialogueObject.dialogueTexts.Count)];
-        text = ReplacePlaceholders(text, allDishes);
-        speakBubble.SetActive(true);
+        text = string.Format(text, dish.ItemName);
 
         if (currentTalkingCoroutine != null && !dialogueList[angryStage].stackable)
         {
             StopAllCoroutines();
-            textBubble.text = "";
+            textBubble.text = string.Empty;
         }
         else
         {
             StopAllCoroutines();
             textBubble.text = existingCompletionText;
-            existingCompletionText = textBubble.text + "\n" + text;
+            existingCompletionText = textBubble.text + " ... " + text;
         }
 
-        if (!dialogueList[angryStage].stackable)
-        {
-            currentTalkingCoroutine = Co_TypingEffect(text, textBubble);
-            StartCoroutine(currentTalkingCoroutine);
-        }
-        else
-        {
-            currentTalkingCoroutine = Co_TypingEffect(text, textBubble, true);
-            StartCoroutine(currentTalkingCoroutine);
-        }
+        bubbleAnimator.SetBool("Enabled", true);
+
+        currentTalkingCoroutine = Co_TypingEffect(text, textBubble, dialogueList[angryStage].stackable);
+        StartCoroutine(currentTalkingCoroutine);
     }
 
-    IEnumerator Co_TypingEffect(string text, TextMeshProUGUI textBubble)
+    private IEnumerator Co_TypingEffect(string text, TextMeshProUGUI textBubble, bool stackable)
     {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < text.Length; i++)
-        {
-            stringBuilder.Append(text[i]);
-            textBubble.text = stringBuilder.ToString();
-            yield return new WaitForSeconds(typingSpped);
-        }
-        currentTalkingCoroutine = null;
-    }
-
-    IEnumerator Co_TypingEffect(string text, TextMeshProUGUI textBubble, bool stackalbe)
-    {
-        StringBuilder stringBuilder = new StringBuilder();
+        StringBuilder stringBuilder = new();
         string originalText = textBubble.text;
-        Debug.Log("CurrentText : " + text);
         for (int i = 0; i < text.Length; i++)
         {
             stringBuilder.Append(text[i]);
-            textBubble.text = originalText + "\n" + stringBuilder.ToString();
+
+            if (stackable)
+                textBubble.text = originalText + " ... " + stringBuilder.ToString();
+            else
+                textBubble.text = stringBuilder.ToString();
+
             yield return new WaitForSeconds(typingSpped);
         }
-        textBubble.text += "... ";
-        Debug.Log("Text Done");
+
+        if (stackable)
+            textBubble.text += " ... ";
 
         currentTalkingCoroutine = null;
     }
@@ -143,7 +131,7 @@ public class TypingEffect : MonoBehaviour
         StartCoroutine(Co_FontSizeToSmall());
     }
 
-    IEnumerator Co_FontSizeToSmall()
+    private IEnumerator Co_FontSizeToSmall()
     {
         isFontToSmallCorutineRunning = true;
         while (tmp.fontSize <= smallFontSize)
@@ -159,44 +147,22 @@ public class TypingEffect : MonoBehaviour
         tmp.fontSize += fontSizeUpSpeed;
     }
     #endregion
-
-    private string ReplacePlaceholders(string text, AllDishes allDishes)
-    {
-        RestaurantMenuItem mainDish = GetRandomItem(allDishes.allMainDish);
-        RestaurantMenuItem sideDish = GetRandomItem(allDishes.allSideDish);
-        RestaurantMenuItem drink = GetRandomItem(allDishes.allDrink);
-
-        string mDish = mainDish.ItemName;
-        string sDish = sideDish.ItemName;
-        string dDrink = drink.ItemName;
-
-        text = text.Replace("{01}", mDish);
-        text = text.Replace("{02}", sDish);
-        text = text.Replace("{00}", dDrink);
-
-        return text;
-    }
-
-    private RestaurantMenuItem GetRandomItem(List<RestaurantMenuItem> items)
-    {
-        if (items == null || items.Count == 0)
-        {
-            return null;
-        }
-        return items[Random.Range(0, items.Count)];
-    }
     
     #region PopBubble
-    public void PopBubble()
+    public void TryPopBubble()
     {
-        bubblePop.Play();
-        currentTalkingCoroutine = null;
-        Debug.Log("PopBubble");
-        StopAllCoroutines();
-        tmp.text = "";
+        if (string.IsNullOrEmpty(tmp.text))
+            return;
 
-        speakBubble.SetActive(false);
+        bubbleAnimator.SetTrigger("Pop");
+        bubbleAnimator.SetBool("Enabled", false);
+
+        currentTalkingCoroutine = null;
+        StopAllCoroutines();
+
+        tmp.text = string.Empty;
     }
+
     public void ChangeColorToRed(float angry)
     {
         float normalizedAngry = Mathf.Clamp01(angry / 300f);

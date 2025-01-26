@@ -4,7 +4,10 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "AllDishes", menuName = "Scriptable Objects/AllDishes")]
 public class AllDishes : ScriptableObject
 {
-    public List<RestaurantMenuItem> allMainDish;
-    public List<RestaurantMenuItem> allSideDish;
-    public List<RestaurantMenuItem> allDrink;
+    [SerializeField] private List<RestaurantMenuItem> list;
+
+    public RestaurantMenuItem GetRandom()
+    {
+        return list[Random.Range(0, list.Count)];
+    }
 }
