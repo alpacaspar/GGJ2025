@@ -39,7 +39,7 @@ public class TypingEffect : MonoBehaviour
     [SerializeField] private float shakePower;
     [SerializeField] private float chageColorRedSpeed;
     [SerializeField] private Image bubbleImage;
-    [SerializeField] private Animation bubblePop;
+    [SerializeField] private Animator bubbleAnimator;
     [SerializeField] private Color baseColor;
     [SerializeField] private Color redColor;
     [SerializeField] private AnimationCurve shakeCurve;
@@ -54,7 +54,7 @@ public class TypingEffect : MonoBehaviour
         bubbleImage = GetComponentInChildren<Image>();
 
         customer = GetComponent<Customer>();
-        
+
     }
 
     private void OnEnable()
@@ -99,7 +99,7 @@ public class TypingEffect : MonoBehaviour
         {
             StopAllCoroutines();
             textBubble.text = existingCompletionText;
-            existingCompletionText = textBubble.text + "\n" + text;
+            existingCompletionText = textBubble.text + " ... " + text;
         }
 
         if (!dialogueList[angryStage].stackable)
@@ -112,6 +112,8 @@ public class TypingEffect : MonoBehaviour
             currentTalkingCoroutine = Co_TypingEffect(text, textBubble, true);
             StartCoroutine(currentTalkingCoroutine);
         }
+
+        bubbleAnimator.SetBool("Enabled", true);
     }
 
     IEnumerator Co_TypingEffect(string text, TextMeshProUGUI textBubble)
@@ -134,11 +136,10 @@ public class TypingEffect : MonoBehaviour
         for (int i = 0; i < text.Length; i++)
         {
             stringBuilder.Append(text[i]);
-            textBubble.text = originalText + "\n" + stringBuilder.ToString();
+            textBubble.text = originalText + stringBuilder.ToString();
             yield return new WaitForSeconds(typingSpped);
         }
         textBubble.text += "... ";
-        Debug.Log("Text Done");
 
         currentTalkingCoroutine = null;
     }
@@ -166,32 +167,19 @@ public class TypingEffect : MonoBehaviour
         tmp.fontSize += fontSizeUpSpeed;
     }
 
+    #endregion
+
     private string ReplacePlaceholders(string text, AllDishes allDishes)
     {
-        RestaurantMenuItem mainDish = GetRandomItem(allDishes);
-        RestaurantMenuItem sideDish = GetRandomItem(allDishes);
-        RestaurantMenuItem drink = GetRandomItem(allDishes);
+        var mainDish = GetRandomItem(allDishes);
 
         string mDish = mainDish.ItemName;
-        string sDish = sideDish.ItemName;
-        string dDrink = drink.ItemName;
-
-        text = text.Replace("{00}", dDrink);
-        text = text.Replace("{01}", mDish);
-        text = text.Replace("{02}", sDish);
+        text = string.Format(text, mDish);
 
         // Ensure the orderList has a maximum of 3 items
         if (customer.orderList.Count < 3)
         {
             customer.orderList.Add(mainDish);
-        }
-        if (customer.orderList.Count < 3)
-        {
-            customer.orderList.Add(sideDish);
-        }
-        if (customer.orderList.Count < 3)
-        {
-            customer.orderList.Add(drink);
         }
 
         return text;
@@ -201,17 +189,19 @@ public class TypingEffect : MonoBehaviour
     {
         return allDishes.GetRandom();
     }
-    
+
     #region PopBubble
     public void PopBubble()
     {
-        //bubblePop.Play();
+        if (string.IsNullOrEmpty(tmp.text))
+            return;
+
         currentTalkingCoroutine = null;
-        Debug.Log("PopBubble");
         StopAllCoroutines();
         tmp.text = "";
-
-       // speakBubble.SetActive(false);
+      
+        bubbleAnimator.SetTrigger("Pop");
+        bubbleAnimator.SetBool("Enabled", false);
     }
 
     public void ChangeColorToRed(float angry)
@@ -286,6 +276,5 @@ public class TypingEffect : MonoBehaviour
         shakeCoroutine = null;
     }
 
-    #endregion
     #endregion
 }
