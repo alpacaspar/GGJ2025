@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ggj25_wood_0: 2775277740301118808
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
