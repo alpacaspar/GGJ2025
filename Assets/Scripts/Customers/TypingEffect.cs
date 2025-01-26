@@ -197,13 +197,13 @@ public class TypingEffect : MonoBehaviour
     #region PopBubble
     public void PopBubble()
     {
-        bubblePop.Play();
+        //bubblePop.Play();
         currentTalkingCoroutine = null;
         Debug.Log("PopBubble");
         StopAllCoroutines();
         tmp.text = "";
 
-        speakBubble.SetActive(false);
+       // speakBubble.SetActive(false);
     }
 
     public void ChangeColorToRed(float angry)

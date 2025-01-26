@@ -11,7 +11,7 @@ public class Customer : MonoBehaviour
     [Header("Dishes")]
     [SerializeField] private AllDishes allDishes;
     public List<RestaurantMenuItem> orderList;
-    
+
     [Header("AI Agent")]
     [SerializeField] private bool randomSpeed = false;
     [Range(1f, 10f)]
@@ -23,11 +23,11 @@ public class Customer : MonoBehaviour
     [Header("Hunger")]
     [SerializeField] private float currentHunger = 100;
     [SerializeField] private float hungerDecreaseRate = 0.15f;
-    [SerializeField] private int talkTier = 70;
-    [SerializeField] private int secondTalkTier = 20;
-    [SerializeField] private int attentionTier = 40;
-    [SerializeField] private int orderTier = 10;
-    [SerializeField] private int angerTier = 10;
+    [SerializeField] private int talkTier1 = 70;
+    [SerializeField] private int secondTalkTier4 = 20;
+    [SerializeField] private int attentionTier2 = 40;
+    [SerializeField] private int orderTier3 = 10;
+    [SerializeField] private int angerTier4 = 10;
 
     [SerializeField] private int hungerLevel = 0;
     [SerializeField] private AnimationCurve hungerCurve;
@@ -39,6 +39,7 @@ public class Customer : MonoBehaviour
 
     private bool isSeated = false;
     private float elapsedTime = 0f;
+    private bool isHungerFrozen = false;
 
     [Header("SpeakBubble")]
     [SerializeField] private TextMeshProUGUI speakBubble;
@@ -60,21 +61,21 @@ public class Customer : MonoBehaviour
         // Find the CustomerSpawner in the scene and get the spawnPoint
         spawnPoint = transform.position;
 
-        talkTier = AdjustTier(talkTier);
-        secondTalkTier = AdjustTier(secondTalkTier);
-        attentionTier = AdjustTier(attentionTier);
-        orderTier = AdjustTier(orderTier);
-        angerTier = AdjustTier(angerTier);
+        talkTier1 = AdjustTier(talkTier1);
+        secondTalkTier4 = AdjustTier(secondTalkTier4);
+        attentionTier2 = AdjustTier(attentionTier2);
+        orderTier3 = AdjustTier(orderTier3);
+        angerTier4 = AdjustTier(angerTier4);
     }
 
     private void Update()
     {
-        if (isSeated && currentHunger > 0)
+        if (isSeated && currentHunger > 0 && !isMovingAway && !isHungerFrozen)
             elapsedTime += Time.deltaTime;
 
         float hungerRate = hungerCurve.Evaluate(elapsedTime);
 
-        if (isSeated && currentHunger > 0)
+        if (isSeated && currentHunger > 0 && !isHungerFrozen)
             currentHunger -= hungerRate * Time.deltaTime;
 
         CheckHungerTiers();
@@ -86,7 +87,7 @@ public class Customer : MonoBehaviour
             MoveTowardsTarget(targetChair.transform.position);
         }
 
-        if(transform.position == targetChair.transform.position)
+        if (transform.position == targetChair.transform.position)
         {
             isSeated = true;
             targetChair.isChairOccupied = true;
@@ -96,21 +97,19 @@ public class Customer : MonoBehaviour
         if (currentHunger <= 0 && !isMovingAway)
         {
             isMovingAway = true;
-            
         }
 
-        if(isMovingAway)
+        if (isMovingAway)
         {
             MoveTowardsTarget(spawnPoint);
 
             if (transform.position == spawnPoint)
             {
-                targetChair.isChairOccupied = false;
                 typingEffect.PopBubble();
+                targetChair.isChairOccupied = false;
                 Destroy(gameObject);
             }
         }
-
     }
 
     private int AdjustTier(int tier)
@@ -128,17 +127,17 @@ public class Customer : MonoBehaviour
     {
         int newHungerState = hungerState;
 
-        if (currentHunger <= angerTier)
+        if (currentHunger <= angerTier4)
             newHungerState = 4;
-        else if (currentHunger <= orderTier)
+        else if (currentHunger <= orderTier3)
             newHungerState = 3;
-        else if (currentHunger <= secondTalkTier)
+        else if (currentHunger <= secondTalkTier4)
             newHungerState = 1;
-        else if (currentHunger <= attentionTier)
+        else if (currentHunger <= attentionTier2)
             newHungerState = 2;
-        else if (currentHunger <= talkTier)
+        else if (currentHunger <= talkTier1)
             newHungerState = 1;
-        else if (currentHunger > talkTier)
+        else if (currentHunger > talkTier1)
             newHungerState = 0;
 
         if (newHungerState != hungerState)
@@ -146,6 +145,19 @@ public class Customer : MonoBehaviour
             hungerState = newHungerState;
             typingEffect.StartTypingEffect(speakBubble, hungerState, allDishes);
         }
+    }
+
+    private IEnumerator FreezeHunger()
+    {
+        isHungerFrozen = true;
+        yield return new WaitForSeconds(5f);
+        isHungerFrozen = false;
+    }
+
+    // Call this method when the customer gets an item
+    public void OnItemReceived()
+    {
+        StartCoroutine(FreezeHunger());
     }
 
     //private IEnumerator JumpOffChair()
