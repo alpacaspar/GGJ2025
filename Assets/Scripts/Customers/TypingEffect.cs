@@ -165,6 +165,7 @@ public class TypingEffect : MonoBehaviour
     {
         tmp.fontSize += fontSizeUpSpeed;
     }
+
     private string ReplacePlaceholders(string text, AllDishes allDishes)
     {
         RestaurantMenuItem mainDish = GetRandomItem(allDishes);

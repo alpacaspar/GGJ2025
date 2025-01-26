@@ -82,7 +82,7 @@ public class Customer : MonoBehaviour
 
         typingEffect.ChangeColorToRed(currentHunger);
 
-        if (targetChair != null && !isSeated)
+        if (targetChair != null && !isSeated && !isMovingAway)
         {
             MoveTowardsTarget(targetChair.transform.position);
         }
@@ -93,7 +93,6 @@ public class Customer : MonoBehaviour
             targetChair.isChairOccupied = true;
         }
 
-        // Check if currentHunger is less than or equal to 0
         if (currentHunger <= 0 && !isMovingAway)
         {
             isMovingAway = true;
@@ -101,6 +100,7 @@ public class Customer : MonoBehaviour
 
         if (isMovingAway)
         {
+            Debug.Log("Attempting to move away");
             MoveTowardsTarget(spawnPoint);
 
             if (transform.position == spawnPoint)
