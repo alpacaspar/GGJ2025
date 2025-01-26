@@ -10,7 +10,22 @@ public class PlayerInteractor : InteractableBehaviour
     private List<InteractableBehaviour> interactables = new();
 
     // Can be used to check on the customer if the player has the correct menu item.
-    public RestaurantMenuItem CurrentCarriedItem { get; set; }
+    private RestaurantMenuItem currentCarriedItem;
+    public RestaurantMenuItem CurrentcarriedItem
+    {
+        get => currentCarriedItem;
+
+        set
+        {
+            if (value == null)
+            {
+                foodObject.SetActive(false);
+            }
+            currentCarriedItem = CurrentcarriedItem;
+        }
+    }
+
+    [SerializeField] private GameObject foodObject;
 
     private void OnEnable()
     {
@@ -68,6 +83,8 @@ public class PlayerInteractor : InteractableBehaviour
 
     private void FoodInteractable_OnInteracted(RestaurantMenuItem item)
     {
-        CurrentCarriedItem = item;
+        currentCarriedItem = item;
+        foodObject.GetComponent<SpriteRenderer>().sprite = currentCarriedItem.ItemSprite;
+        foodObject.SetActive(true);
     }
 }

@@ -14,9 +14,9 @@ public class CustomerInteractable : InteractableBehaviour
         Customer customer = GetComponent<Customer>();
         foreach (RestaurantMenuItem menu in customer.orderList)
         {
-            if ((interactor as PlayerInteractor).CurrentCarriedItem.MenuType == menu.MenuType)
+            if ((interactor as PlayerInteractor).CurrentcarriedItem.MenuType == menu.MenuType)
             {
-                (interactor as PlayerInteractor).CurrentCarriedItem = null;
+                (interactor as PlayerInteractor).CurrentcarriedItem = null;
                 customer.orderList.Remove(menu);
                 if (customer.orderList.Count <= 0)
                 {
