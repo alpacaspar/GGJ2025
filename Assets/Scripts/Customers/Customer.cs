@@ -9,6 +9,9 @@ public class Customer : MonoBehaviour
 
     [Header("Dishes")]
     [SerializeField] private AllDishes allDishes;
+    public RestaurantMenuItem mainOrder;
+    public RestaurantMenuItem sideOrder;
+    public RestaurantMenuItem drinkOrder;
 
     [Header("AI Agent")]
     [SerializeField] private bool randomSpeed = false;
@@ -57,6 +60,12 @@ public class Customer : MonoBehaviour
 
         // Find the CustomerSpawner in the scene and get the spawnPoint
         spawnPoint = transform.position;
+
+        talkTier = AdjustTier(talkTier);
+        secondTalkTier = AdjustTier(secondTalkTier);
+        attentionTier = AdjustTier(attentionTier);
+        orderTier = AdjustTier(orderTier);
+        angerTier = AdjustTier(angerTier);
     }
 
     private void Update()
@@ -88,9 +97,14 @@ public class Customer : MonoBehaviour
         if (currentHunger <= 0 && !isMovingAway)
         {
             isMovingAway = true;
+            
+        }
+
+        if(isMovingAway)
+        {
             MoveTowardsTarget(spawnPoint);
 
-            if(transform.position == spawnPoint)
+            if (transform.position == spawnPoint)
             {
                 targetChair.isChairOccupied = false;
                 typingEffect.TryPopBubble();
@@ -98,6 +112,12 @@ public class Customer : MonoBehaviour
             }
         }
 
+    }
+
+    private int AdjustTier(int tier)
+    {
+        float adjustment = Random.Range(-0.1f, 0.1f);
+        return Mathf.RoundToInt(tier * (1 + adjustment));
     }
 
     private void MoveTowardsTarget(Vector3 targetPosition)
