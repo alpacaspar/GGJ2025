@@ -11,6 +11,6 @@ public class CustomerInteractable : InteractableBehaviour
 
     public override void Interact(InteractableBehaviour interactor)
     {
-        typingEffect.TryPopBubble();
+        typingEffect.PopBubble();
     }
 }
