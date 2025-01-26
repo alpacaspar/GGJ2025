@@ -341,7 +341,10 @@ Transform:
   - {fileID: 5326502927072644381}
   - {fileID: 5694571728731577232}
   - {fileID: 7336647589917214210}
+<<<<<<< Updated upstream
   - {fileID: 2208423711699722520}
+=======
+>>>>>>> Stashed changes
   - {fileID: 359543558657439176}
   - {fileID: 7946519224223678489}
   - {fileID: 504180043358842841}
@@ -1457,6 +1460,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4056567142334965811, guid: a03ffa5a4e1d82647b445fa0df8b1d82, type: 3}
   m_PrefabInstance: {fileID: 6706289535853596127}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< Updated upstream
 --- !u!1001 &7516129214395969550
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1535,6 +1539,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8569015389120925974, guid: ec166807e96ea794cac3663d856b887d, type: 3}
   m_PrefabInstance: {fileID: 7516129214395969550}
   m_PrefabAsset: {fileID: 0}
+=======
+>>>>>>> Stashed changes
 --- !u!1001 &8220785583118017758
 PrefabInstance:
   m_ObjectHideFlags: 0
