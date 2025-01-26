@@ -351,7 +351,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetChair: {fileID: 0}
-  allDishes: {fileID: 0}
+  allDishes: {fileID: 11400000, guid: 41f3dd7d9b6a62c43a86a80b08d9244c, type: 2}
   randomSpeed: 0
   minSpeed: 3
   maxSpeed: 5
@@ -473,6 +473,7 @@ MonoBehaviour:
   shakePower: 0.1
   chageColorRedSpeed: 0
   bubbleImage: {fileID: 6873588754824791368}
+  bubblePop: {fileID: 0}
   baseColor: {r: 1, g: 1, b: 1, a: 1}
   redColor: {r: 1, g: 0, b: 0, a: 1}
   lerpCurve:
