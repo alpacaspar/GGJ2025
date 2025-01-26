@@ -15,10 +15,13 @@ if (hunger >= hunger_target) GetFood();
 await Interact();
 public bool CanInteract(IInteractable interactor);
 isWaiting = true;
+$$void QueueDesiredFood(order): { foodQueue.clear(); foodQueue.Append(order); }
 
 #orders
 var newOrder = {00};
-await firstOrder == {00} && secondOrder == {01} 
+await firstOrder == {00} && secondOrder == {01};
+$$public String order: set(menuItem) { if (!order): return;  order = menuItem; pickMenuItem(order); } get: return {{00}};
+QueueDesiredFood({00});
 
 #impatient
 $$private void Update() { UpdateTime(); }

@@ -40,6 +40,7 @@ I expect a serving!
 I request repart!
 Nurishment upon me!
 I toss thee a coin, waiter!
+Let us joineth in jolly cooperation!
 
 #orders
 A great ser faces me today! Tell me, what lord serveth thee? Ah, I merely jest! Ahahah! However, naught lollygaggery, with serious heart I bring the request of a mighty repast! Some nurishment that aught bring me sustenance for upcoming battles diminute or colossal! a {00} should do fine in such case. 
@@ -47,3 +48,8 @@ Prithee listen to myne pleas. Myne dear Priscilla awaiteth myne arrival at the "
 Ahh hello dear shopkeep, I require thine most fortifying of meals! And dare not to bear news to me that I shant be capable of handling thine grandest repast. I shall enter battle soon and thus request only thine most fortitudinous of nurishments. I beg thee, I demand a puissant {00}. Prithee Thou may bringest me {00} soon with a side of {01}, for I must entre battle soon!
 
 #impatient
+Myne quest awaits!
+Make haste myne valiant vassal!
+The quest never waits for a tardy traveler!
+Priscilla needeth me!
+Myne strength wanes!
