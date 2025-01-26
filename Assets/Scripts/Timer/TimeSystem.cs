@@ -37,7 +37,8 @@ public class TimeSystem : MonoBehaviour
 
     private void Update()
     {
-        UpdateTime();
+        if (GameManager.Instance.CurrentState is CurrentState.InGame)
+            UpdateTime();
     }
 
     private void UpdateTime()
