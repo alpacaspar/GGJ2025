@@ -5,7 +5,7 @@ public class Menu : MonoBehaviour
 {
     [SerializeField] private Button defaultSelectedButton;
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
         if (defaultSelectedButton != null)
             defaultSelectedButton.Select();

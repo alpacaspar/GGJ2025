@@ -16,7 +16,7 @@ public class TimeSystem : MonoBehaviour
     [SerializeField] private TextMeshProUGUI penaltyText;
 
     [Header("Score")]
-    [SerializeField] private int currentScore;
+    [field: SerializeField] public int currentScore { get; private set; }
     [SerializeField] private float scoreUpdateValue;
     [SerializeField] private float scoreUpdateTimeValue;
     [SerializeField] private TextMeshProUGUI scoreText;
