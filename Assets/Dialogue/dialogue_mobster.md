@@ -12,6 +12,6 @@ You just got to bring her the boquet Tony, the rest of us will wingman it done f
 #orders
 Ey, you better make this a nice one for bossman here, capiche? A {00}, and presto!
 
-
 #impatient
-...
+Unless you fancy a new suit, you better get back her quick!
+You know what's good for ya bud?
