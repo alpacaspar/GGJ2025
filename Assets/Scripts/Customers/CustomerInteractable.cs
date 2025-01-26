@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class CustomerInteractable : InteractableBehaviour
 {
+    [SerializeField] private TypingEffect typingEffect;
+
     public override bool CanInteract(InteractableBehaviour interactor)
     {
         return true;
@@ -9,6 +11,6 @@ public class CustomerInteractable : InteractableBehaviour
 
     public override void Interact(InteractableBehaviour interactor)
     {
-        Debug.Log("Can I get uhh burger.");
+        typingEffect.TryPopBubble();
     }
 }

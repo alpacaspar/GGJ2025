@@ -43,7 +43,6 @@ public class Customer : MonoBehaviour
     private TypingEffect typingEffect;
 
     // Add reference to CustomerSpawner and spawnPoint
-    public CustomerSpawner customerSpawner;
     private Vector3 spawnPoint;
     private bool isMovingAway = false;
 
@@ -94,7 +93,7 @@ public class Customer : MonoBehaviour
             if(transform.position == spawnPoint)
             {
                 targetChair.isChairOccupied = false;
-                typingEffect.PopBubble();
+                typingEffect.TryPopBubble();
                 Destroy(gameObject);
             }
         }

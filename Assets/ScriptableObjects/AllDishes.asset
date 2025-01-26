@@ -12,15 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df929fa67aea06847be8a48e091fd4d0, type: 3}
   m_Name: AllDishes
   m_EditorClassIdentifier: Assembly-CSharp::AllDishesSo
-  allMainDish:
+  list:
+  - {fileID: 11400000, guid: d51f60fde1520db4ba286ff3db1e6ef8, type: 2}
+  - {fileID: 11400000, guid: 2602c3c136434404bb6e358ac10353cd, type: 2}
+  - {fileID: 11400000, guid: 9ec5e6706a921844bbd6b30e126e5f95, type: 2}
   - {fileID: 11400000, guid: fcd69426c350f6548b52d855b40c466d, type: 2}
   - {fileID: 11400000, guid: 0fc2b7d03b6d281459a28bc4f6bf9757, type: 2}
   - {fileID: 11400000, guid: 77abba2ae2b021b4cb50f1028eb94e50, type: 2}
   - {fileID: 11400000, guid: e505372ae2a66f949a01684432e26c77, type: 2}
-  allSideDish:
-  - {fileID: 11400000, guid: 8056e0a950742bb46bb0bcee9516b120, type: 2}
   - {fileID: 11400000, guid: a9fb1341ebbfadb4b9a0b4ee9395aac4, type: 2}
-  allDrink:
-  - {fileID: 11400000, guid: 2602c3c136434404bb6e358ac10353cd, type: 2}
-  - {fileID: 11400000, guid: 9ec5e6706a921844bbd6b30e126e5f95, type: 2}
-  - {fileID: 11400000, guid: d51f60fde1520db4ba286ff3db1e6ef8, type: 2}
+  - {fileID: 11400000, guid: 8056e0a950742bb46bb0bcee9516b120, type: 2}
