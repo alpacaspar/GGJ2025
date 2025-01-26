@@ -12,6 +12,8 @@ public class FoodInteractable : InteractableBehaviour
     private float currentTime;
     private bool isPreparing = true;
 
+    private RestaurantMenuItem preparedMenuItem;
+
     private void Awake()
     {
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
@@ -41,6 +43,7 @@ public class FoodInteractable : InteractableBehaviour
     public override void Interact(InteractableBehaviour interactor)
     {
         StartPreparation();
+        OnInteracted?.Invoke(preparedMenuItem);
     }
 
     private void StartPreparation()
@@ -53,12 +56,10 @@ public class FoodInteractable : InteractableBehaviour
 
     private void StopPreparation()
     {
-        var preparedMenuItem = menuItems[Random.Range(0, menuItems.Length)];
+        preparedMenuItem = menuItems[Random.Range(0, menuItems.Length)];
         isPreparing = false;
 
         spriteRenderer.gameObject.SetActive(true);
         spriteRenderer.sprite = preparedMenuItem.ItemSprite;
-
-        OnInteracted?.Invoke(preparedMenuItem);
     }
 }
