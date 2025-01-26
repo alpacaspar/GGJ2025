@@ -110,6 +110,7 @@ public class Customer : MonoBehaviour
             {
                 typingEffect.PopBubble();
                 targetChair.isChairOccupied = false;
+                TimeSystem.instance.GetPenalty();
                 Destroy(gameObject);
             }
         }
@@ -171,29 +172,4 @@ public class Customer : MonoBehaviour
     {
         StartCoroutine(FreezeHunger());
     }
-
-    //private IEnumerator JumpOffChair()
-    //{
-    //    Vector3 startPosition = transform.position;
-    //    Vector3 endPosition = startPosition + transform.forward * -1; // Move one unit forward
-
-    //    float elapsedTime = 0f;
-
-    //    while (elapsedTime < jumpDuration)
-    //    {
-    //        float t = elapsedTime / jumpDuration;
-    //        float height = jumpCurve.Evaluate(t);
-
-    //        transform.position = Vector3.Lerp(startPosition, endPosition, t) + Vector3.up * height;
-
-    //        elapsedTime += Time.deltaTime;
-    //        yield return null;
-    //    }
-
-    //    transform.SetPositionAndRotation(endPosition, Quaternion.identity);
-    //    isSeated = false;
-    //    typingEffect.PopBubble();
-    //    StopCoroutine(JumpOffChair());
-    //    MoveTowardsTarget(spawnPoint);
-    //}
 }

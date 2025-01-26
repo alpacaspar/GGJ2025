@@ -61,6 +61,13 @@ public class TimeSystem : MonoBehaviour
     public void GetPenalty()
     {
         currentPenalty++;
-        if(penaltyText != null) penaltyText.text = currentPenalty.ToString();
+
+        if (currentPenalty > 10)
+        {
+            GameManager.Instance.CurrentState = CurrentState.GameOver;
+        }
+
+        if(penaltyText != null)
+            penaltyText.text = currentPenalty.ToString();
     }
 }

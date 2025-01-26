@@ -22,7 +22,7 @@ public class TypingEffect : MonoBehaviour
     [SerializeField] private GameObject speakBubble;
 
     [Header("TypingList")]
-    [SerializeField] private List<DialogueList> dialogueList = new List<DialogueList>();
+    [SerializeField] private List<DialogueList> dialogueList = new();
 
     [Header("SmokeSetting")]
     [SerializeField] private float smallFontSize;
@@ -132,7 +132,6 @@ public class TypingEffect : MonoBehaviour
     {
         StringBuilder stringBuilder = new StringBuilder();
         string originalText = textBubble.text;
-        Debug.Log("CurrentText : " + text);
         for (int i = 0; i < text.Length; i++)
         {
             stringBuilder.Append(text[i]);
