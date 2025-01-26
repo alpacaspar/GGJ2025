@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -9,10 +10,8 @@ public class Customer : MonoBehaviour
 
     [Header("Dishes")]
     [SerializeField] private AllDishes allDishes;
-    public RestaurantMenuItem mainOrder;
-    public RestaurantMenuItem sideOrder;
-    public RestaurantMenuItem drinkOrder;
-
+    public List<RestaurantMenuItem> orderList;
+    
     [Header("AI Agent")]
     [SerializeField] private bool randomSpeed = false;
     [Range(1f, 10f)]

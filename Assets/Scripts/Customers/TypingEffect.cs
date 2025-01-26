@@ -182,9 +182,9 @@ public class TypingEffect : MonoBehaviour
         text = text.Replace("{02}", sDish);
 
         // Set the orders in the Customer class
-        customer.mainOrder = mainDish;
-        customer.sideOrder = sideDish;
-        customer.drinkOrder = drink;
+        customer.orderList.Add(mainDish);
+        customer.orderList.Add(sideDish);
+        customer.orderList.Add(drink);
 
         return text;
     }

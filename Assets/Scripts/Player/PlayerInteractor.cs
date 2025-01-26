@@ -10,7 +10,7 @@ public class PlayerInteractor : InteractableBehaviour
     private List<InteractableBehaviour> interactables = new();
 
     // Can be used to check on the customer if the player has the correct menu item.
-    public RestaurantMenuItem CurrentCarriedItem { get; private set; }
+    public RestaurantMenuItem CurrentCarriedItem { get; set; }
 
     private void OnEnable()
     {
