@@ -55,11 +55,13 @@ public class DialogueParser : EditorWindow
 
         DialogueObject dialogueObject = null;
         List<DialogueObject> dialogueObjects = new();
+        List<string> headerLines = new();
 
         foreach (string line in fileLines)
         {
             if (line.StartsWith("#"))
             {
+                headerLines.Add(line.Substring(1).Trim());
                 if (dialogueObject != null && dialogueObject.dialogueTexts.Count > 0)
                 {
                     dialogueObjects.Add(dialogueObject);
@@ -85,11 +87,14 @@ public class DialogueParser : EditorWindow
 
         for (int i = 0; i < dialogueObjects.Count; i++)
         {
-            string assetPath = $"Assets/DialogueObjects/{Path.GetFileNameWithoutExtension(path)}_Line_{i + 1}.asset";
+            string assetPath = $"Assets/DialogueObjects/{Path.GetFileNameWithoutExtension(path)}_Line_{headerLines[i]}.asset";
             AssetDatabase.CreateAsset(dialogueObjects[i], assetPath);
         }
 
         AssetDatabase.SaveAssets();
         EditorUtility.DisplayDialog("Dialogue Parser", "Dialogue file parsed and saved as ScriptableObjects.", "OK");
+
+        // Insert header lines at the end
+    
     }
 }

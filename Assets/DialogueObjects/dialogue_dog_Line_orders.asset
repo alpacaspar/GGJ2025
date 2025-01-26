@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb514baf766eca2468380f97098e855a, type: 3}
+  m_Name: dialogue_dog_Line_orders
+  m_EditorClassIdentifier: 
+  dialogueTexts:
+  - Woof woof woof bark bark woof boof {00}, woof bark bark.
+  - Bark bark woof boof waf {00}, woof woof.
+  - Awoo woof bark woof {00} boof bark woof!
+  - Boof woof bark waf {00} Awoooo!

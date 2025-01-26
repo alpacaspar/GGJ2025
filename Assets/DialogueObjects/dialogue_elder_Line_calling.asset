@@ -10,11 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eb514baf766eca2468380f97098e855a, type: 3}
-  m_Name: dialogue_regular_Line_angry
+  m_Name: dialogue_elder_Line_calling
   m_EditorClassIdentifier: 
   dialogueTexts:
-  - I'm really getting hungry now.
-  - I had no idea it would take this long.
-  - If only I had known beforehand...
-  - We've waited for 20 minutes in line, twice, just to get into this store!
-  - 'That waiter really could do with some exercise... '
+  - Hey dearie!
+  - Oh could you help me, please?
+  - I would like to order.
+  - Can you come over here Fred?
+  - Can you come over here Bobby?
+  - Can you come over here Jenny?
+  - Can you come over here Melissa?
+  - Can you come over here Rupert?
+  - I've made a decision and would like to order, please.

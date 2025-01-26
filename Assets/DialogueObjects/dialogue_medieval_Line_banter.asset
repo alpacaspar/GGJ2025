@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb514baf766eca2468380f97098e855a, type: 3}
+  m_Name: dialogue_medieval_Line_banter
+  m_EditorClassIdentifier: 
+  dialogueTexts:
+  - We are amidst strange beings, in a strange land. The flow of time itself is convoluted;
+    with heroes centuries old phasing in and out. The very fabric wavers, and relations
+    shift and obscure. The sun is a wondrous body. Like a magnificent father! If
+    only I could be so grossly incandescent!
+  - Thou disgracest myne honor with thine presence!
+  - For that is how events goeth.
+  - Eruditional!
+  - Effervescent!
+  - Ser Cumference wouldst have loven this place.
+  - Conflagration! Conflagration!
+  - That's whenst I realised myne wench was truly a witch!
+  - Frivulosities disinterest me.
+  - Art thou in serious mind whenst thee speaketh in these terms?
+  - I never hath made it past that damned black knight.
+  - Dark souls are upon us...
+  - Kingdom come shall be delivered too.
+  - The King never did appreciate myne efforts.
+  - Ah... My dearest Priscilla... Myne battle for thee starteth today.
+  - Knighthood is not easily bestowed, you know?
+  - May the Lord grant me strength.
+  - O, may it not tasteth of poultice...
+  - Mayhaps aught we to order from the special menue?
+  - And prehaps myne journey aught finally shepherd me to the King's field.
+  - O, how I pray for thee and thine curse, cousin knight Pavol...
+  - I may have forgotten where I left those old scrolls.

@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb514baf766eca2468380f97098e855a, type: 3}
+  m_Name: dialogue_elder_Line_banter
+  m_EditorClassIdentifier: 
+  dialogueTexts:
+  - Oh Lettie, where would I be without you.
+  - You know, it gets lonely out here without you.
+  - I feel like I might've forgotten something...
+  - Why shouldn't I buy some new ones?
+  - Ah, I miss those days.
+  - Oh, that's right!
+  - I've never considered that in all my years.
+  - Age gives you a certain perspective on such things.
+  - I still remember those awful times, that is why I try to enjoy myself here.
+  - Experience and patience will help you through any difficult moment. Both things
+    I have plenty of.
+  - Quite right you are.

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb514baf766eca2468380f97098e855a, type: 3}
+  m_Name: dialogue_mysterious_Line_orders
+  m_EditorClassIdentifier: 
+  dialogueTexts:
+  - A guy like me, doesn't do all that talkin', I'm a doer not a sayer! That being
+    said... you standing there, expecting me to bring you release from your selfimposed
+    chains... Yes, I've decided. I shall grant it; your peace, my mercy. Don't mention
+    it. I will order from you a {00} and a small {01}. Now you're free to do as you
+    please, go out there and fulfill your destiny, lucky as you are to have one...
+    Not all of us have it easy like that, some of us are just cursed with true freedom,
+    and the world is not kind to those that carve their own path.
