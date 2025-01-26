@@ -30,11 +30,22 @@ public class PlayerInteractor : InteractableBehaviour
     private void OnEnable()
     {
         FoodInteractable.OnInteracted += FoodInteractable_OnInteracted;
+        SmokeInteractable.OnSmokeBreakFinished += SmokeInteractable_OnSmokeBreakFinished;
+    }
+
+    private void SmokeInteractable_OnSmokeBreakFinished()
+    {
+        var uhh = interactables.Where((i) => i is SmokeInteractable).ToList();
+        for (int i = uhh.Count() - 1; i >= 0; i--)
+        {
+            interactables.Remove(uhh[i]);
+        }
     }
 
     private void OnDisable()
     {
         FoodInteractable.OnInteracted -= FoodInteractable_OnInteracted;
+        SmokeInteractable.OnSmokeBreakFinished += SmokeInteractable_OnSmokeBreakFinished;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -59,6 +70,7 @@ public class PlayerInteractor : InteractableBehaviour
         if (!context.action.WasReleasedThisFrame())
             return;
 
+        interactables.RemoveAll((i) => (i.transform.position - transform.position).sqrMagnitude > 2 * 2);
         interactables.RemoveAll((i) => i == null || !i.gameObject.activeSelf);
         if (!interactables.Any())
             return;

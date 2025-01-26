@@ -26,12 +26,9 @@ public class CustomerInteractable : InteractableBehaviour
             {
                 (interactor as PlayerInteractor).CurrentcarriedItem = null;
                 customer.orderList.Remove(menu);
-                if (customer.orderList.Count <= 0)
-                {
-                    typingEffect.PopBubble();
-                }
-                break;
             }
         }
+        
+        typingEffect.PopBubble();
     }
 }
