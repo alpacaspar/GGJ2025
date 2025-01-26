@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using UnityEngine;
 
 public class PlayerSpawner : MonoBehaviour
@@ -9,11 +11,27 @@ public class PlayerSpawner : MonoBehaviour
     private void OnEnable()
     {
         GameManager.OnStateChanged += Instance_OnStateChanged;
+        SmokeInteractable.OnSmokeBreakStarted += SmokeInteractable_OnSmokeBreakStarted;
+        SmokeInteractable.OnSmokeBreakFinished += SmokeInteractable_OnSmokeBreakFinished;
     }
+
 
     private void OnDisable()
     {
         GameManager.OnStateChanged -= Instance_OnStateChanged;
+        SmokeInteractable.OnSmokeBreakStarted -= SmokeInteractable_OnSmokeBreakStarted;
+        SmokeInteractable.OnSmokeBreakFinished -= SmokeInteractable_OnSmokeBreakFinished;
+    }
+
+    private void SmokeInteractable_OnSmokeBreakFinished()
+    {
+        playerInstance.SetActive(true);
+    }
+    
+    private void SmokeInteractable_OnSmokeBreakStarted()
+    {
+        playerInstance.SetActive(false);
+
     }
 
     private void Instance_OnStateChanged(CurrentState state)

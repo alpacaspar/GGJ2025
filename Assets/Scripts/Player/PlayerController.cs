@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -15,6 +16,15 @@ public class PlayerController : MonoBehaviour
     {
         characterController = GetComponent<CharacterController>();
         input = GetComponent<PlayerInput>();
+
+        SmokeInteractable.OnSmokeBreakStarted += SmokeInteractable_OnSmokeBreakStarted;
+        SmokeInteractable.OnSmokeBreakFinished += SmokeInteractable_OnSmokeBreakFinished;
+    }
+
+    private void OnDestroy()
+    {
+        SmokeInteractable.OnSmokeBreakStarted -= SmokeInteractable_OnSmokeBreakStarted;
+        SmokeInteractable.OnSmokeBreakFinished -= SmokeInteractable_OnSmokeBreakFinished;
     }
 
     private void OnEnable()
@@ -22,11 +32,21 @@ public class PlayerController : MonoBehaviour
         GameManager.OnStateChanged += GameOver_OnStateChanged;
     }
 
+
     private void OnDisable()
     {
         GameManager.OnStateChanged -= GameOver_OnStateChanged;
     }
 
+    private void SmokeInteractable_OnSmokeBreakStarted()
+    {
+        input.enabled = false;
+    }
+
+    private void SmokeInteractable_OnSmokeBreakFinished()
+    {
+        input.enabled = true;
+    }
 
     private void Update()
     {

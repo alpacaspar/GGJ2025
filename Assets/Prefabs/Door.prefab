@@ -64,6 +64,7 @@ GameObject:
   - component: {fileID: 2625890826034868054}
   - component: {fileID: 4017159765349722698}
   - component: {fileID: 1647897051000870971}
+  - component: {fileID: 4593269900234637236}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -121,6 +122,21 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.75
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &4593269900234637236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3829332504893156225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dc198281ed6f9d4f900c229631b3222, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meshRenderer: {fileID: 5940012012280402988}
+  closedMaterial: {fileID: 2100000, guid: 556ce288fdd26414d982ce2ea72111df, type: 2}
+  openMaterial: {fileID: 2100000, guid: 75820254a7776f04e931f684c86e3f94, type: 2}
 --- !u!1001 &5021158261657979048
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -197,5 +213,10 @@ PrefabInstance:
 --- !u!4 &4765940527153098563 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c13ee68c209e091429e7222c971f21c0, type: 3}
+  m_PrefabInstance: {fileID: 5021158261657979048}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &5940012012280402988 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: c13ee68c209e091429e7222c971f21c0, type: 3}
   m_PrefabInstance: {fileID: 5021158261657979048}
   m_PrefabAsset: {fileID: 0}
