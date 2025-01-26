@@ -49,6 +49,8 @@ public class Customer : MonoBehaviour
     private Vector3 spawnPoint;
     private bool isMovingAway = false;
 
+    private Animator animator;
+
     private void Awake()
     {
         if (randomSpeed)
@@ -66,6 +68,7 @@ public class Customer : MonoBehaviour
         attentionTier2 = AdjustTier(attentionTier2);
         orderTier3 = AdjustTier(orderTier3);
         angerTier4 = AdjustTier(angerTier4);
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -109,6 +112,15 @@ public class Customer : MonoBehaviour
                 targetChair.isChairOccupied = false;
                 Destroy(gameObject);
             }
+        }
+
+        if (!isSeated)
+        {
+            animator.SetBool("Walking", true);
+        }
+        else
+        {
+            animator.SetBool("Walking", false);
         }
     }
 
