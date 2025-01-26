@@ -352,16 +352,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetChair: {fileID: 0}
   allDishes: {fileID: 11400000, guid: 41f3dd7d9b6a62c43a86a80b08d9244c, type: 2}
+  orderList: []
   randomSpeed: 0
   minSpeed: 3
   maxSpeed: 5
   currentHunger: 300
   hungerDecreaseRate: 4
-  talkTier: 280
-  secondTalkTier: 100
-  attentionTier: 200
-  orderTier: 160
-  angerTier: 50
+  talkTier1: 250
+  secondTalkTier4: 100
+  attentionTier2: 200
+  orderTier3: 150
+  angerTier4: 130
   hungerLevel: 0
   hungerCurve:
     serializedVersion: 2
@@ -452,19 +453,19 @@ MonoBehaviour:
   speakBubble: {fileID: 6006036038274473158}
   dialogueList:
   - angryStage: 0
-    dialogueObject: {fileID: 11400000, guid: 4108d684ab056b540bb496e139e56917, type: 2}
+    dialogueObject: {fileID: 11400000, guid: 35db7fbcf1ae1c54da80d712913b1e94, type: 2}
     stackable: 1
   - angryStage: 1
     dialogueObject: {fileID: 11400000, guid: 89069a84096c7044ebb1bb9c646d7978, type: 2}
-    stackable: 1
+    stackable: 0
   - angryStage: 2
-    dialogueObject: {fileID: 11400000, guid: 6ba096e8476e404458374507136e6e69, type: 2}
+    dialogueObject: {fileID: 11400000, guid: 4953394f06c0352498435c43862bf899, type: 2}
     stackable: 1
   - angryStage: 3
-    dialogueObject: {fileID: 11400000, guid: 09a68ed14cb9c8d479caefd9b3450bf8, type: 2}
+    dialogueObject: {fileID: 11400000, guid: 3fafccddc24f9954c8e63895eaedc0ff, type: 2}
     stackable: 1
   - angryStage: 4
-    dialogueObject: {fileID: 11400000, guid: e7a704906046a0f4db4870df29121903, type: 2}
+    dialogueObject: {fileID: 11400000, guid: 3f7547a7ae85a044497107ba5535b87e, type: 2}
     stackable: 1
   smallFontSize: 0
   fontSizeDownSpeed: 0
@@ -473,39 +474,12 @@ MonoBehaviour:
   shakePower: 0.1
   chageColorRedSpeed: 0
   bubbleImage: {fileID: 6873588754824791368}
-  bubbleAnimator: {fileID: 655087756955735784}
+  bubblePop: {fileID: 0}
   baseColor: {r: 1, g: 1, b: 1, a: 1}
   redColor: {r: 1, g: 0, b: 0, a: 1}
-  lerpCurve:
+  shakeCurve:
     serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.7208847
-      value: 0.2577828
-      inSlope: 0.959202
-      outSlope: 0.959202
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
+    m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -726,7 +700,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6006036038274473158}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 4fe1035a2fbaf2f46898d1b82060f027, type: 2}
   m_CullingMode: 0

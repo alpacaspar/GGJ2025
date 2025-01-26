@@ -165,8 +165,6 @@ public class TypingEffect : MonoBehaviour
     {
         tmp.fontSize += fontSizeUpSpeed;
     }
-    #endregion
-
     private string ReplacePlaceholders(string text, AllDishes allDishes)
     {
         RestaurantMenuItem mainDish = GetRandomItem(allDishes);
@@ -181,10 +179,19 @@ public class TypingEffect : MonoBehaviour
         text = text.Replace("{01}", mDish);
         text = text.Replace("{02}", sDish);
 
-        // Set the orders in the Customer class
-        customer.orderList.Add(mainDish);
-        customer.orderList.Add(sideDish);
-        customer.orderList.Add(drink);
+        // Ensure the orderList has a maximum of 3 items
+        if (customer.orderList.Count < 3)
+        {
+            customer.orderList.Add(mainDish);
+        }
+        if (customer.orderList.Count < 3)
+        {
+            customer.orderList.Add(sideDish);
+        }
+        if (customer.orderList.Count < 3)
+        {
+            customer.orderList.Add(drink);
+        }
 
         return text;
     }
@@ -278,5 +285,6 @@ public class TypingEffect : MonoBehaviour
         shakeCoroutine = null;
     }
 
+    #endregion
     #endregion
 }
