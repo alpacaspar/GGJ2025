@@ -238,7 +238,7 @@ public class TypingEffect : MonoBehaviour
     private void ApplyShake(float initialIntensity)
     {
         if (shakeCoroutine != null) return;
-        shakeCoroutine = StartCoroutine(ShakeRoutine(initialIntensity, 20));
+        shakeCoroutine = StartCoroutine(ShakeRoutine(initialIntensity, 40));
     }
 
     private IEnumerator ShakeRoutine(float initialIntensity, float maxShakeDuration = 2f)

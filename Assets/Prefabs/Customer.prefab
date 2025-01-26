@@ -358,13 +358,13 @@ MonoBehaviour:
   randomSpeed: 0
   minSpeed: 3
   maxSpeed: 5
-  currentHunger: 300
+  currentHunger: 600
   hungerDecreaseRate: 4
-  talkTier1: 250
+  talkTier1: 550
   secondTalkTier4: 100
-  attentionTier2: 200
-  orderTier3: 150
-  angerTier4: 130
+  attentionTier2: 500
+  orderTier3: 400
+  angerTier4: 200
   hungerLevel: 0
   hungerCurve:
     serializedVersion: 2
@@ -459,7 +459,7 @@ MonoBehaviour:
     stackable: 1
   - angryStage: 1
     dialogueObject: {fileID: 11400000, guid: 89069a84096c7044ebb1bb9c646d7978, type: 2}
-    stackable: 0
+    stackable: 1
   - angryStage: 2
     dialogueObject: {fileID: 11400000, guid: 4953394f06c0352498435c43862bf899, type: 2}
     stackable: 1
