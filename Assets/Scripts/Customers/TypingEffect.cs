@@ -22,7 +22,7 @@ public class TypingEffect : MonoBehaviour
     [SerializeField] private GameObject speakBubble;
 
     [Header("TypingList")]
-    [SerializeField] private List<DialogueList> dialogueList = new();
+    [SerializeField] private List<DialogueList> dialogueList = new List<DialogueList>();
 
     [Header("SmokeSetting")]
     [SerializeField] private float smallFontSize;
@@ -39,15 +39,22 @@ public class TypingEffect : MonoBehaviour
     [SerializeField] private float shakePower;
     [SerializeField] private float chageColorRedSpeed;
     [SerializeField] private Image bubbleImage;
-    [SerializeField] private Animator bubbleAnimator;
+    [SerializeField] private Animation bubblePop;
     [SerializeField] private Color baseColor;
     [SerializeField] private Color redColor;
-    [SerializeField] private AnimationCurve lerpCurve;
+    [SerializeField] private AnimationCurve shakeCurve;
+
+
+    private Customer customer;
+    private bool isShaking = false;
 
     private void Awake()
     {
         tmp = GetComponentInChildren<TextMeshProUGUI>();
         bubbleImage = GetComponentInChildren<Image>();
+
+        customer = GetComponent<Customer>();
+        
     }
 
     private void OnEnable()
@@ -77,49 +84,61 @@ public class TypingEffect : MonoBehaviour
             return;
         }
 
-        var dish = allDishes.GetRandom();
-        
         string text;
         angryStage--;
         text = dialogueList[angryStage].dialogueObject.dialogueTexts[Random.Range(0, dialogueList[angryStage].dialogueObject.dialogueTexts.Count)];
-        text = string.Format(text, dish.ItemName);
+        text = ReplacePlaceholders(text, allDishes);
+        speakBubble.SetActive(true);
 
         if (currentTalkingCoroutine != null && !dialogueList[angryStage].stackable)
         {
             StopAllCoroutines();
-            textBubble.text = string.Empty;
+            textBubble.text = "";
         }
         else
         {
             StopAllCoroutines();
             textBubble.text = existingCompletionText;
-            existingCompletionText = textBubble.text + " ... " + text;
+            existingCompletionText = textBubble.text + "\n" + text;
         }
 
-        bubbleAnimator.SetBool("Enabled", true);
-
-        currentTalkingCoroutine = Co_TypingEffect(text, textBubble, dialogueList[angryStage].stackable);
-        StartCoroutine(currentTalkingCoroutine);
+        if (!dialogueList[angryStage].stackable)
+        {
+            currentTalkingCoroutine = Co_TypingEffect(text, textBubble);
+            StartCoroutine(currentTalkingCoroutine);
+        }
+        else
+        {
+            currentTalkingCoroutine = Co_TypingEffect(text, textBubble, true);
+            StartCoroutine(currentTalkingCoroutine);
+        }
     }
 
-    private IEnumerator Co_TypingEffect(string text, TextMeshProUGUI textBubble, bool stackable)
+    IEnumerator Co_TypingEffect(string text, TextMeshProUGUI textBubble)
     {
-        StringBuilder stringBuilder = new();
-        string originalText = textBubble.text;
+        StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < text.Length; i++)
         {
             stringBuilder.Append(text[i]);
-
-            if (stackable)
-                textBubble.text = originalText + " ... " + stringBuilder.ToString();
-            else
-                textBubble.text = stringBuilder.ToString();
-
+            textBubble.text = stringBuilder.ToString();
             yield return new WaitForSeconds(typingSpped);
         }
+        currentTalkingCoroutine = null;
+    }
 
-        if (stackable)
-            textBubble.text += " ... ";
+    IEnumerator Co_TypingEffect(string text, TextMeshProUGUI textBubble, bool stackalbe)
+    {
+        StringBuilder stringBuilder = new StringBuilder();
+        string originalText = textBubble.text;
+        Debug.Log("CurrentText : " + text);
+        for (int i = 0; i < text.Length; i++)
+        {
+            stringBuilder.Append(text[i]);
+            textBubble.text = originalText + "\n" + stringBuilder.ToString();
+            yield return new WaitForSeconds(typingSpped);
+        }
+        textBubble.text += "... ";
+        Debug.Log("Text Done");
 
         currentTalkingCoroutine = null;
     }
@@ -131,7 +150,7 @@ public class TypingEffect : MonoBehaviour
         StartCoroutine(Co_FontSizeToSmall());
     }
 
-    private IEnumerator Co_FontSizeToSmall()
+    IEnumerator Co_FontSizeToSmall()
     {
         isFontToSmallCorutineRunning = true;
         while (tmp.fontSize <= smallFontSize)
@@ -147,30 +166,71 @@ public class TypingEffect : MonoBehaviour
         tmp.fontSize += fontSizeUpSpeed;
     }
     #endregion
+
+    private string ReplacePlaceholders(string text, AllDishes allDishes)
+    {
+        RestaurantMenuItem mainDish = GetRandomItem(allDishes);
+        RestaurantMenuItem sideDish = GetRandomItem(allDishes);
+        RestaurantMenuItem drink = GetRandomItem(allDishes);
+
+        string mDish = mainDish.ItemName;
+        string sDish = sideDish.ItemName;
+        string dDrink = drink.ItemName;
+
+        text = text.Replace("{00}", dDrink);
+        text = text.Replace("{01}", mDish);
+        text = text.Replace("{02}", sDish);
+
+        // Set the orders in the Customer class
+        customer.mainOrder = mainDish;
+        customer.sideOrder = sideDish;
+        customer.drinkOrder = drink;
+
+        return text;
+    }
+
+    private RestaurantMenuItem GetRandomItem(AllDishes allDishes)
+    {
+        return allDishes.GetRandom();
+    }
     
     #region PopBubble
-    public void TryPopBubble()
+    public void PopBubble()
     {
-        if (string.IsNullOrEmpty(tmp.text))
-            return;
-
-        bubbleAnimator.SetTrigger("Pop");
-        bubbleAnimator.SetBool("Enabled", false);
-
+        bubblePop.Play();
         currentTalkingCoroutine = null;
+        Debug.Log("PopBubble");
         StopAllCoroutines();
+        tmp.text = "";
 
-        tmp.text = string.Empty;
+        speakBubble.SetActive(false);
     }
 
     public void ChangeColorToRed(float angry)
     {
-        float normalizedAngry = Mathf.Clamp01(angry / 300f);
-        float curveValue = lerpCurve.Evaluate(normalizedAngry);
+        if (angry > 200)
+        {
+            bubbleImage.color = baseColor;
+            return;
+        }
 
-        bubbleImage.color = Color.Lerp(redColor, baseColor, curveValue);
+        float normalizedAngry;
+        if (angry > 100)
+        {
+            normalizedAngry = Mathf.Lerp(0f, 0.2f, (200 - angry) / 100f); // 200 to 100 maps to 0% to 20%
+        }
+        else if (angry > 75)
+        {
+            normalizedAngry = Mathf.Lerp(0.2f, 0.5f, (100 - angry) / 25f); // 100 to 75 maps to 20% to 50%
+        }
+        else
+        {
+            normalizedAngry = Mathf.Lerp(0.5f, 1f, (75 - angry) / 75f); // 75 to 0 maps to 50% to 100%
+        }
 
-        if (angry <= shakeValue)
+        bubbleImage.color = Color.Lerp(baseColor, redColor, normalizedAngry);
+
+        if (angry <= shakeValue && !isShaking)
         {
             ApplyShake(normalizedAngry);
         }
@@ -178,22 +238,22 @@ public class TypingEffect : MonoBehaviour
 
     private Coroutine shakeCoroutine;
 
-    private void ApplyShake(float intensity)
+    private void ApplyShake(float initialIntensity)
     {
-        if (shakeCoroutine != null) return; 
-        shakeCoroutine = StartCoroutine(ShakeRoutine(intensity));
+        if (shakeCoroutine != null) return;
+        shakeCoroutine = StartCoroutine(ShakeRoutine(initialIntensity, 20));
     }
 
-    private IEnumerator ShakeRoutine(float intensity)
+    private IEnumerator ShakeRoutine(float initialIntensity, float maxShakeDuration = 2f)
     {
+        isShaking = true;
         Vector3 originalPosition = speakBubble.transform.localPosition;
-        float shakeDuration = 0.5f; 
         float elapsed = 0f;
 
-        while (elapsed < shakeDuration)
+        while (elapsed < maxShakeDuration)
         {
-            // Calculate shake amount based on intensity and shakePower
-            float shakeAmount = Mathf.Lerp(0, shakePower, 1f - intensity);
+            // Calculate shake amount based on the shake curve
+            float shakeAmount = shakeCurve.Evaluate(elapsed / maxShakeDuration) * shakePower * initialIntensity;
 
             // Generate random offset
             float offsetX = Random.Range(-shakeAmount, shakeAmount);
@@ -214,7 +274,9 @@ public class TypingEffect : MonoBehaviour
 
         // Reset position and stop shaking
         speakBubble.transform.localPosition = originalPosition;
+        isShaking = false;
         shakeCoroutine = null;
     }
+
     #endregion
 }

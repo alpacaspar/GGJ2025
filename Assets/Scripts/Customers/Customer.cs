@@ -107,7 +107,7 @@ public class Customer : MonoBehaviour
             if (transform.position == spawnPoint)
             {
                 targetChair.isChairOccupied = false;
-                typingEffect.TryPopBubble();
+                typingEffect.PopBubble();
                 Destroy(gameObject);
             }
         }
