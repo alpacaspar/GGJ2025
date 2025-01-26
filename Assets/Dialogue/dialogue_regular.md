@@ -33,7 +33,34 @@ Wait, I can't believe I never noticed!
 Do your eyes have heterophobia!?
 I got this new tablecloth that is hydrophobic, kinda like this one. It's amazing how easy it is to clean!
 I got this new tablecloth that is homophobic, kinda like this one. It's amazing how easy it is to clean!
-
+Oh but that's alright.
+Yeah, that's ok.
+Alright! That's a plan then!
+Shall I go to the concert tomorrow despite my busy schedule?
+Man, I'm just glad I can finally sit down.
+The last place that looked like this I was in, had some very dark figures entering and leaving regularly.
+Yeah, that's why I'm here now.
+I never even thought about wether eggs are dairy or not!
+I really like eating carbohydrates.
+Sitting around and chatting loudly is my favourite part of going to the restaurant honestly.
+I love going here with friends ngl.
+So how much time do we have left before we need to leave?
+By god, I'm tired.
+Looking at the menu builds up an apetite.
+Do you know what this dish is?
+I assume zuppa is soup, but what does chappility mean?
+No pizza? But its so italian themed!
+This soundtrack is kind of a banger.
+Why are the tables like this?
+How are they going to plate the moist dishes if the plates are so flat!?
+This makes no sense.
+Oh that's easy!
+Why did you do that?
+Can you stop that!?
+Sometimes I wish I was deaf.
+Knowing how to read won't help me.
+Food is so good though, honestly!
+Give this one a "true"!
 
 #calling
 Hey, waiter! Over here please! Could you come over?
