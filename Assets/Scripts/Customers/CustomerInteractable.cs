@@ -11,6 +11,19 @@ public class CustomerInteractable : InteractableBehaviour
 
     public override void Interact(InteractableBehaviour interactor)
     {
-        typingEffect.PopBubble();
+        Customer customer = GetComponent<Customer>();
+        foreach (RestaurantMenuItem menu in customer.orderList)
+        {
+            if ((interactor as PlayerInteractor).CurrentCarriedItem.MenuType == menu.MenuType)
+            {
+                (interactor as PlayerInteractor).CurrentCarriedItem = null;
+                customer.orderList.Remove(menu);
+                if (customer.orderList.Count <= 0)
+                {
+                    typingEffect.PopBubble();
+                }
+                break;
+            }
+        }
     }
 }
