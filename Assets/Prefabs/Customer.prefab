@@ -455,7 +455,7 @@ MonoBehaviour:
   speakBubble: {fileID: 6006036038274473158}
   dialogueList:
   - angryStage: 0
-    dialogueObject: {fileID: 11400000, guid: 35db7fbcf1ae1c54da80d712913b1e94, type: 2}
+    dialogueObject: {fileID: 11400000, guid: 89069a84096c7044ebb1bb9c646d7978, type: 2}
     stackable: 1
   - angryStage: 1
     dialogueObject: {fileID: 11400000, guid: 89069a84096c7044ebb1bb9c646d7978, type: 2}
