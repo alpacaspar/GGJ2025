@@ -95,6 +95,5 @@ public class DialogueParser : EditorWindow
         EditorUtility.DisplayDialog("Dialogue Parser", "Dialogue file parsed and saved as ScriptableObjects.", "OK");
 
         // Insert header lines at the end
-    
     }
 }

@@ -360,7 +360,7 @@ MonoBehaviour:
   maxSpeed: 5
   currentHunger: 600
   hungerDecreaseRate: 4
-  talkTier1: 550
+  talkTier1: 580
   secondTalkTier4: 100
   attentionTier2: 500
   orderTier3: 400
@@ -469,9 +469,9 @@ MonoBehaviour:
   - angryStage: 4
     dialogueObject: {fileID: 11400000, guid: 3f7547a7ae85a044497107ba5535b87e, type: 2}
     stackable: 1
-  smallFontSize: 0
-  fontSizeDownSpeed: 0
-  fontSizeUpSpeed: 0
+  smallFontSize: 0.1
+  fontSizeDownSpeed: 0.1
+  fontSizeUpSpeed: 0.002
   shakeValue: 100
   shakePower: 0.1
   chageColorRedSpeed: 0
@@ -587,7 +587,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1000
   m_TargetDisplay: 0
 --- !u!114 &7061352085803556033
 MonoBehaviour:

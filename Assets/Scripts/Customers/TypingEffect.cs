@@ -135,7 +135,7 @@ public class TypingEffect : MonoBehaviour
         for (int i = 0; i < text.Length; i++)
         {
             stringBuilder.Append(text[i]);
-            textBubble.text = originalText + stringBuilder.ToString();
+            textBubble.text = originalText + " ... " + stringBuilder.ToString();
             yield return new WaitForSeconds(typingSpped);
         }
         textBubble.text += "... ";
@@ -153,17 +153,22 @@ public class TypingEffect : MonoBehaviour
     IEnumerator Co_FontSizeToSmall()
     {
         isFontToSmallCorutineRunning = true;
-        while (tmp.fontSize <= smallFontSize)
+
+        var currentTime = 0f;
+
+        while (currentTime < 20)
         {
-            tmp.fontSize = Mathf.Lerp(tmp.fontSize, smallFontSize, fontSizeDownSpeed);
+            tmp.fontSize = Mathf.Lerp(tmp.fontSize, smallFontSize, fontSizeDownSpeed * Time.deltaTime);
             yield return null;
+
+            currentTime += Time.deltaTime;
         }
         isFontToSmallCorutineRunning = false;
     }
 
     public void FontSizeUp()
     {
-        tmp.fontSize += fontSizeUpSpeed;
+        tmp.fontSize += fontSizeUpSpeed * Time.deltaTime;
     }
 
     #endregion

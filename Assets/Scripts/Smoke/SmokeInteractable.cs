@@ -9,7 +9,7 @@ public class SmokeInteractable : InteractableBehaviour
 
     public override bool CanInteract(InteractableBehaviour interactor)
     {
-        return true;
+        return (interactor.transform.position - transform.position).sqrMagnitude < 2 * 2;
     }
 
     public override void Interact(InteractableBehaviour interactor)
